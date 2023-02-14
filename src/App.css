@@ -11,12 +11,12 @@
 }
 @layer components {
   .header-item {
-    @apply relative;
+    @apply relative grow text-[#EFEFEF] py-3;
   }
   .header-item-name {
-    @apply px-4 py-2 cursor-pointer;
+    @apply px-4 py-3 cursor-pointer lg:text-center hover:text-[#FDBF57] transition-colors duration-300;
   }
   .header-item-dropdown {
-    @apply hidden bg-[#56002A] absolute left-0 right-0;
+    @apply hidden bg-[#56002A] absolute top-[100%] left-0 right-0 z-30;
   }
 }

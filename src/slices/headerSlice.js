@@ -10,9 +10,13 @@ const initialState = {
     "Breadth-First Search",
     "Depth-First Search",
   ],
+  currentPathfindingAlgorithm: "none",
   mazeAlgorithms: ["Recursive Division", "Random", "Stair"],
+  currentMazeAlgorithm: "none",
   obstacles: ["Wall", "Weight"],
+  currentObstacle: "Wall",
   speeds: ["Fast", "Medium", "Slow"],
+  currentSpeed: "Fast",
 };
 
 export const headerSlice = createSlice({
