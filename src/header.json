@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Algorithms",
+    "dropdownItems": [
+      "Dijkstra's",
+      "A*",
+      "Swarm",
+      "Breadth-First Search",
+      "Depth-First Search"
+    ]
+  },
+  {
+    "name": "Mazes",
+    "dropdownItems": ["Recursive Division", "Random", "Stair"]
+  },
+  { "name": "Add Carrot", "dropdownItems": [] },
+  {
+    "name": "Obstacles",
+    "dropdownItems": ["Recursive Division", "Random", "Stair"]
+  },
+  { "name": "Speed", "dropdownItems": ["Fast", "Medium", "Slow"] },
+
+  { "name": "Reset", "dropdownItems": [] },
+  { "name": "Visualize", "dropdownItems": [] }
+]

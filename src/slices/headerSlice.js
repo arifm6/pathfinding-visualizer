@@ -3,19 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentDropdown: "none",
   mobileMenuOpen: false,
-  pathfindingAlgorithms: [
-    "Dijkstra's",
-    "A*",
-    "Swarm",
-    "Breadth-First Search",
-    "Depth-First Search",
-  ],
   currentPathfindingAlgorithm: "none",
-  mazeAlgorithms: ["Recursive Division", "Random", "Stair"],
   currentMazeAlgorithm: "none",
-  obstacles: ["Wall", "Weight"],
   currentObstacle: "Wall",
-  speeds: ["Fast", "Medium", "Slow"],
   currentSpeed: "Fast",
 };
 
@@ -38,9 +28,4 @@ export const { updateCurrentDropdown, toggleMobileMenuOpen } =
 
 export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
 export const selectCurrentDropdown = (state) => state.header.currentDropdown;
-export const selectPathfindingAlgorithms = (state) =>
-  state.header.pathfindingAlgorithms;
-export const selectMazeAlgorithms = (state) => state.header.mazeAlgorithms;
-export const selectObstacle = (state) => state.header.obstacles;
-export const selectSpeed = (state) => state.header.speeds;
 export default headerSlice.reducer;

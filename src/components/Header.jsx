@@ -1,11 +1,8 @@
 import React from "react";
 import HeaderDropdown from "./HeaderDropdown";
+import headerData from "../header.json";
 import {
-  selectMazeAlgorithms,
   selectMobileMenuOpen,
-  selectObstacle,
-  selectPathfindingAlgorithms,
-  selectSpeed,
   toggleMobileMenuOpen,
 } from "../slices/headerSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,18 +10,17 @@ import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 export default function Header() {
   const dispatch = useDispatch();
+
   const mobileMenuOpen = useSelector(selectMobileMenuOpen);
-  const pathfindingAlgorithms = useSelector(selectPathfindingAlgorithms);
-  const mazeAlgorithms = useSelector(selectMazeAlgorithms);
-  const obstacles = useSelector(selectObstacle);
-  const speeds = useSelector(selectSpeed);
   const handleMobileMenuClick = () => {
     dispatch(toggleMobileMenuOpen());
   };
   return (
     <header className="max-w-full bg-[#7A003C]">
       <div className="flex justify-between px-4 relative items-center">
-        <h1 className="text-3xl text-[#EFEFEF] py-3">Pathfinding Visualizer</h1>
+        <h1 className="text-3xl text-[#EFEFEF] py-3 hover:text-[#FDBF57] transition-colors duration-300 cursor-pointer">
+          Pathfinding Visualizer
+        </h1>
         <button className="lg:hidden" onClick={() => handleMobileMenuClick()}>
           {mobileMenuOpen ? <AiOutlineClose /> : <FaBars />}
         </button>
@@ -33,40 +29,17 @@ export default function Header() {
             mobileMenuOpen ? "absolute" : "hidden"
           } top-[100%] bg-[#7A003C] left-0 right-0 lg:static lg:flex grow items-center cursor-pointer`}
         >
-          <li className="header-item ">
-            <h1 className="header-item-name">Algorithms</h1>
-            <HeaderDropdown
-              dropdownItems={pathfindingAlgorithms}
-              dropdownName={"Algorithms"}
-            />
-          </li>
-          <li className="header-item  ">
-            <h1 className="header-item-name">Mazes</h1>
-            <HeaderDropdown
-              dropdownItems={mazeAlgorithms}
-              dropdownName={"Mazes"}
-            />
-          </li>
-          <li className="header-item  ">
-            <h1 className="header-item-name">Add Carrot</h1>
-          </li>
-          <li className="header-item  ">
-            <h1 className="header-item-name">Obstacle</h1>
-            <HeaderDropdown
-              dropdownItems={obstacles}
-              dropdownName={"Obstacle"}
-            />
-          </li>
-          <li className="header-item  ">
-            <h1 className="header-item-name">Speed</h1>
-            <HeaderDropdown dropdownItems={speeds} dropdownName={"Speed"} />
-          </li>
-          <li className="header-item  ">
-            <h1 className="header-item-name">Reset</h1>
-          </li>
-          <li className="header-item  ">
-            <h1 className="header-item-name">Visualize</h1>
-          </li>
+          {headerData.map((headerDataItem, i) => {
+            return (
+              <li className="header-item" key={i}>
+                <h1 className="header-item-name">{headerDataItem.name}</h1>
+                <HeaderDropdown
+                  dropdownItems={headerDataItem.dropdownItems}
+                  dropdownName={headerDataItem.name}
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
     </header>
