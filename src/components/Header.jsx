@@ -27,7 +27,7 @@ export default function Header() {
         <ul
           className={`${
             mobileMenuOpen ? "absolute" : "hidden"
-          } top-[100%] bg-[#7A003C] left-0 right-0 lg:static lg:flex grow items-center cursor-pointer`}
+          } top-[100%] bg-[#7A003C] left-0 right-0 lg:static lg:flex grow items-center cursor-pointer z-30`}
         >
           {headerData.map((headerDataItem, i) => {
             return (
