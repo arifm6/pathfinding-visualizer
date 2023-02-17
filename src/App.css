@@ -19,4 +19,35 @@
   .header-item-dropdown {
     @apply hidden bg-[#56002A] absolute top-[100%] left-0 right-0 z-30;
   }
+  .node-container {
+    @apply relative flex items-center justify-center w-8 h-8 border-[0.5px] border-[#5E6A71] overflow-visible;
+  }
+  @keyframes node-circle-expand {
+    0% {
+      height: 0px;
+      width: 0px;
+      border-radius: 100%;
+    }
+    90% {
+      height: 110%;
+      width: 110%;
+    }
+    100% {
+      height: 100%;
+      width: 100%;
+      border-radius: 0%;
+    }
+  }
+  .node {
+    @apply absolute w-8 h-8;
+  }
+
+  .wall-node {
+    @apply bg-[#5E6A71];
+    animation-name: node-circle-expand;
+    animation-duration: 0.5s;
+  }
+  .weight-node {
+    @apply bg-green-400;
+  }
 }

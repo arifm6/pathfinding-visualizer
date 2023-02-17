@@ -16,7 +16,7 @@ export default function Header() {
     dispatch(toggleMobileMenuOpen());
   };
   return (
-    <header className="max-w-full bg-[#7A003C]">
+    <header className="w-full max-w-full bg-[#7A003C]">
       <div className="flex justify-between px-4 relative items-center">
         <h1 className="text-3xl text-[#EFEFEF] py-3 hover:text-[#FDBF57] transition-colors duration-300 cursor-pointer">
           Pathfinding Visualizer

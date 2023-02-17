@@ -4,8 +4,8 @@ const initialState = {
   currentDropdown: "none",
   mobileMenuOpen: false,
   currentPathfindingAlgorithm: "none",
-  currentMazeAlgorithm: "none",
-  currentObstacle: "Wall",
+  hasCarrot: false,
+  currentObstacle: "wall",
   currentSpeed: "Fast",
 };
 
@@ -28,4 +28,5 @@ export const { updateCurrentDropdown, toggleMobileMenuOpen } =
 
 export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
 export const selectCurrentDropdown = (state) => state.header.currentDropdown;
+export const selectCurrentObstacle = (state) => state.header.currentObstacle;
 export default headerSlice.reducer;

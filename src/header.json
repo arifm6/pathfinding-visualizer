@@ -16,7 +16,7 @@
   { "name": "Add Carrot", "dropdownItems": [] },
   {
     "name": "Obstacles",
-    "dropdownItems": ["Recursive Division", "Random", "Stair"]
+    "dropdownItems": ["Wall", "Weight"]
   },
   { "name": "Speed", "dropdownItems": ["Fast", "Medium", "Slow"] },
 

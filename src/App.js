@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Header from "./components/Header";
+import Board from "./components/Board";
 import {
   selectCurrentDropdown,
   updateCurrentDropdown,
@@ -16,11 +17,9 @@ function App() {
   };
 
   return (
-    <div
-      className="App min-h-screen bg-gray-400"
-      onClick={(e) => handleClick(e)}
-    >
+    <div className="App min-h-screen" onClick={(e) => handleClick(e)}>
       <Header />
+      <Board />
     </div>
   );
 }
