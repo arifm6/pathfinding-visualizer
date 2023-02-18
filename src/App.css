@@ -41,7 +41,21 @@
   .node {
     @apply absolute w-8 h-8;
   }
-
+  .start-node {
+    @apply bg-green-400;
+    animation-name: node-circle-expand;
+    animation-duration: 0.5s;
+  }
+  .finish-node {
+    @apply bg-red-400;
+    animation-name: node-circle-expand;
+    animation-duration: 0.5s;
+  }
+  .carrot-node {
+    @apply bg-orange-400;
+    animation-name: node-circle-expand;
+    animation-duration: 0.5s;
+  }
   .wall-node {
     @apply bg-[#5E6A71];
     animation-name: node-circle-expand;

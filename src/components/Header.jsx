@@ -1,6 +1,5 @@
 import React from "react";
 import HeaderDropdown from "./HeaderDropdown";
-import headerData from "../header.json";
 import {
   selectMobileMenuOpen,
   toggleMobileMenuOpen,
@@ -8,9 +7,46 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
+import { addCarrot, resetBoard } from "../slices/boardSlice";
 export default function Header() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(resetBoard());
+  const headerData = [
+    {
+      name: "Algorithms",
+      dropdownItems: [
+        "Dijkstra's",
+        "A*",
+        "Swarm",
+        "Breadth-First Search",
+        "Depth-First Search",
+      ],
+    },
+    {
+      name: "Mazes",
+      dropdownItems: ["Recursive Division", "Random", "Stair"],
+    },
+    {
+      name: "Add Carrot",
+      dropdownItems: [],
+      handleClick: function () {
+        dispatch(addCarrot());
+      },
+    },
+    {
+      name: "Obstacles",
+      dropdownItems: ["Wall", "Weight"],
+    },
+    { name: "Speed", dropdownItems: ["Fast", "Medium", "Slow"] },
 
+    {
+      name: "Reset",
+      dropdownItems: [],
+      handleClick: function () {
+        dispatch(resetBoard());
+      },
+    },
+    { name: "Visualize", dropdownItems: [] },
+  ];
   const mobileMenuOpen = useSelector(selectMobileMenuOpen);
   const handleMobileMenuClick = () => {
     dispatch(toggleMobileMenuOpen());
@@ -32,7 +68,14 @@ export default function Header() {
           {headerData.map((headerDataItem, i) => {
             return (
               <li className="header-item" key={i}>
-                <h1 className="header-item-name">{headerDataItem.name}</h1>
+                <h1
+                  className="header-item-name"
+                  onClick={() =>
+                    headerDataItem.handleClick && headerDataItem.handleClick()
+                  }
+                >
+                  {headerDataItem.name}
+                </h1>
                 <HeaderDropdown
                   dropdownItems={headerDataItem.dropdownItems}
                   dropdownName={headerDataItem.name}

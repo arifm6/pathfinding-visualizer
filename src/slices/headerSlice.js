@@ -4,7 +4,6 @@ const initialState = {
   currentDropdown: "none",
   mobileMenuOpen: false,
   currentPathfindingAlgorithm: "none",
-  hasCarrot: false,
   currentObstacle: "wall",
   currentSpeed: "Fast",
 };
@@ -23,7 +22,7 @@ export const headerSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { updateCurrentDropdown, toggleMobileMenuOpen } =
+export const { updateCurrentDropdown, toggleMobileMenuOpen, addCarrotHeader } =
   headerSlice.actions;
 
 export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
