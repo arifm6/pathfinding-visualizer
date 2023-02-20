@@ -44,25 +44,18 @@ function divide(boardSize, rowStart, rowEnd, colStart, colEnd, orientation) {
     let randomColIndex = Math.floor(Math.random() * possibleCols.length);
     let currentRow = possibleRows[randomRowIndex];
     let colRandom = possibleCols[randomColIndex];
-    for (let row = 0; row < boardSize.rows; row++) {
-      for (let col = 0; col < boardSize.cols; col++) {
-        if (
-          row === currentRow &&
-          col !== colRandom &&
-          col >= colStart - 1 &&
-          col <= colEnd + 1
-        ) {
-          timerCounter++;
+    for (let col = colStart - 1; col <= colEnd + 1; col++) {
+      if (col !== colRandom) {
+        timerCounter++;
 
-          setTimeout(() => {
-            store.dispatch(
-              toggleObstacle({
-                node: board[row][col],
-                obstacle: currentObstacle,
-              })
-            );
-          }, animationSpeed * timerCounter);
-        }
+        setTimeout(() => {
+          store.dispatch(
+            toggleObstacle({
+              node: board[currentRow][col],
+              obstacle: currentObstacle,
+            })
+          );
+        }, animationSpeed * timerCounter);
       }
     }
     if (currentRow - 2 - rowStart > colEnd - colStart) {
@@ -95,25 +88,18 @@ function divide(boardSize, rowStart, rowEnd, colStart, colEnd, orientation) {
     let randomRowIndex = Math.floor(Math.random() * possibleRows.length);
     let currentCol = possibleCols[randomColIndex];
     let rowRandom = possibleRows[randomRowIndex];
-    for (let row = 0; row < boardSize.rows; row++) {
-      for (let col = 0; col < boardSize.cols; col++) {
-        if (
-          col === currentCol &&
-          row !== rowRandom &&
-          row >= rowStart - 1 &&
-          row <= rowEnd + 1
-        ) {
-          timerCounter++;
+    for (let row = rowStart - 1; row <= rowEnd + 1; row++) {
+      if (row !== rowRandom) {
+        timerCounter++;
 
-          setTimeout(() => {
-            store.dispatch(
-              toggleObstacle({
-                node: board[row][col],
-                obstacle: currentObstacle,
-              })
-            );
-          }, animationSpeed * timerCounter);
-        }
+        setTimeout(() => {
+          store.dispatch(
+            toggleObstacle({
+              node: board[row][currentCol],
+              obstacle: currentObstacle,
+            })
+          );
+        }, animationSpeed * timerCounter);
       }
     }
 
