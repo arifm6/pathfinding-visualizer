@@ -22,6 +22,7 @@ export default function Board() {
   const whatIsPressed = useSelector(selectWhatIsPressed);
   const currentObstacle = useSelector(selectCurrentObstacle);
   const dispatch = useDispatch();
+
   //only used for handling obstacle
   const handleMouseDown = (node) => {
     dispatch(setMouseIsPressed());
@@ -64,7 +65,7 @@ export default function Board() {
     dispatch(setMouseIsLifted());
   };
   return (
-    <div className="w-full  max-w-full mt-12">
+    <div className="overflow-x-scroll mt-12">
       <table className="mx-auto">
         <tbody>
           {boardArray.map((row, rowIndex) => {

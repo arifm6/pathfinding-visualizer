@@ -14,8 +14,11 @@ export default function HeaderDropdown({ dropdownItems, dropdownName }) {
           <li
             key={i}
             className="px-4 py-6 hover:bg-[#FDBF57] hover:text-[#7A003C] transition-colors duration-300 "
+            onClick={() => {
+              dropdownItem.handleClick && dropdownItem.handleClick();
+            }}
           >
-            {dropdownItem}
+            {dropdownItem.name}
           </li>
         );
       })}

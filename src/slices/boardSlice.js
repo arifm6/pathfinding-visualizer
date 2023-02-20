@@ -52,6 +52,13 @@ const generateBoard = (width, height) => {
   }
   return boardArray;
 };
+const removeObstacles = (board) => {
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board[0].length; col++) {
+      board[row][col].obstacle = "";
+    }
+  }
+};
 const initialWidth = Math.floor(window.innerWidth / 40);
 const initialHeight = Math.floor(window.innerHeight / 45);
 
@@ -87,9 +94,12 @@ export const boardSlice = createSlice({
 
       state.width = newWidth;
       state.height = newHeight;
-
       state.boardArray = generateBoard(newWidth, newHeight);
     },
+    clearBoard: (state) => {
+      removeObstacles(state.boardArray);
+    },
+    //all it needs is the current node and current obstacle as {node, obstacle}
     toggleObstacle: (state, action) => {
       const currentNode = action.payload.node;
       const { row, col } = action.payload.node;
@@ -135,6 +145,7 @@ export const {
   updateBoardHeight,
   addCarrot,
   resetBoard,
+  clearBoard,
   toggleObstacle,
   toggleFinish,
   toggleStart,

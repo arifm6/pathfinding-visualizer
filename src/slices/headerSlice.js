@@ -5,7 +5,7 @@ const initialState = {
   mobileMenuOpen: false,
   currentPathfindingAlgorithm: "none",
   currentObstacle: "wall",
-  currentSpeed: "Fast",
+  currentAnimationSpeed: 99,
 };
 
 export const headerSlice = createSlice({
@@ -18,12 +18,27 @@ export const headerSlice = createSlice({
     toggleMobileMenuOpen: (state) => {
       state.mobileMenuOpen = !state.mobileMenuOpen;
     },
+    setWall: (state) => {
+      state.currentObstacle = "wall";
+    },
+    setWeight: (state) => {
+      state.currentObstacle = "weight";
+    },
+    setAnimationSpeed: (state, action) => {
+      state.currentAnimationSpeed = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateCurrentDropdown, toggleMobileMenuOpen, addCarrotHeader } =
-  headerSlice.actions;
+export const {
+  updateCurrentDropdown,
+  toggleMobileMenuOpen,
+  addCarrotHeader,
+  setWall,
+  setWeight,
+  setAnimationSpeed,
+} = headerSlice.actions;
 
 export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
 export const selectCurrentDropdown = (state) => state.header.currentDropdown;

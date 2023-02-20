@@ -2,28 +2,41 @@ import React from "react";
 import HeaderDropdown from "./HeaderDropdown";
 import {
   selectMobileMenuOpen,
+  setAnimationSpeed,
+  setWall,
+  setWeight,
   toggleMobileMenuOpen,
 } from "../slices/headerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { addCarrot, resetBoard } from "../slices/boardSlice";
+import { recursiveDivision } from "../mazes/recursiveDivision";
 export default function Header() {
   const dispatch = useDispatch(resetBoard());
   const headerData = [
     {
       name: "Algorithms",
       dropdownItems: [
-        "Dijkstra's",
-        "A*",
-        "Swarm",
-        "Breadth-First Search",
-        "Depth-First Search",
+        { name: "Dijkstra's" },
+        { name: "A*" },
+        { name: "Swarm" },
+        { name: "Breadth-First Search" },
+        { name: "Depth-First Search" },
       ],
     },
     {
       name: "Mazes",
-      dropdownItems: ["Recursive Division", "Random", "Stair"],
+      dropdownItems: [
+        {
+          name: "Recursive Division",
+          handleClick: function () {
+            recursiveDivision();
+          },
+        },
+        { name: "Random" },
+        { name: "Stair" },
+      ],
     },
     {
       name: "Add Carrot",
@@ -34,9 +47,47 @@ export default function Header() {
     },
     {
       name: "Obstacles",
-      dropdownItems: ["Wall", "Weight"],
+      dropdownItems: [
+        {
+          name: "Wall",
+          handleClick: function () {
+            dispatch(setWall());
+          },
+        },
+        {
+          name: "Weight",
+          handleClick: function () {
+            dispatch(setWeight());
+          },
+        },
+      ],
     },
-    { name: "Speed", dropdownItems: ["Fast", "Medium", "Slow"] },
+    {
+      name: "Speed",
+      dropdownItems: [
+        {
+          name: "Fast",
+          value: 33,
+          handleClick: function () {
+            dispatch(setAnimationSpeed(this.value));
+          },
+        },
+        {
+          name: "Medium",
+          value: 66,
+          handleClick: function () {
+            dispatch(setAnimationSpeed(this.value));
+          },
+        },
+        {
+          name: "Slow",
+          value: 99,
+          handleClick: function () {
+            dispatch(setAnimationSpeed(this.value));
+          },
+        },
+      ],
+    },
 
     {
       name: "Reset",
@@ -52,7 +103,7 @@ export default function Header() {
     dispatch(toggleMobileMenuOpen());
   };
   return (
-    <header className="w-full max-w-full bg-[#7A003C]">
+    <header className="w-screen max-w-[100vw] bg-[#7A003C]">
       <div className="flex justify-between px-4 relative items-center">
         <h1 className="text-3xl text-[#EFEFEF] py-3 hover:text-[#FDBF57] transition-colors duration-300 cursor-pointer">
           Pathfinding Visualizer

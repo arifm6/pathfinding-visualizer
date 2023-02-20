@@ -62,6 +62,9 @@
     animation-duration: 0.5s;
   }
   .weight-node {
-    @apply bg-green-400;
+    background-image: url("../public/weight.png");
+    background-size: 100% 100%;
+    animation-name: node-circle-expand;
+    animation-duration: 0.5s;
   }
 }
