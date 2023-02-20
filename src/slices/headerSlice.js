@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentDropdown: "none",
   mobileMenuOpen: false,
-  currentPathfindingAlgorithm: "none",
+  currentPathfindingAlgorithm: "",
   currentObstacle: "wall",
   currentAnimationSpeed: 99,
 };
@@ -42,5 +42,9 @@ export const {
 
 export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
 export const selectCurrentDropdown = (state) => state.header.currentDropdown;
+export const selectCurrentPathfindingAlgorithm = (state) =>
+  state.header.currentPathfindingAlgorithm;
 export const selectCurrentObstacle = (state) => state.header.currentObstacle;
+export const selectCurrentAnimationSpeed = (state) =>
+  state.header.currentAnimationSpeed;
 export default headerSlice.reducer;

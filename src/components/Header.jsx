@@ -1,6 +1,9 @@
 import React from "react";
 import HeaderDropdown from "./HeaderDropdown";
 import {
+  selectCurrentAnimationSpeed,
+  selectCurrentObstacle,
+  selectCurrentPathfindingAlgorithm,
   selectMobileMenuOpen,
   setAnimationSpeed,
   setWall,
@@ -14,6 +17,11 @@ import { addCarrot, resetBoard } from "../slices/boardSlice";
 import { recursiveDivision } from "../mazes/recursiveDivision";
 export default function Header() {
   const dispatch = useDispatch(resetBoard());
+  const currentPathfindingAlgorithm = useSelector(
+    selectCurrentPathfindingAlgorithm
+  );
+  const currentObstacle = useSelector(selectCurrentObstacle);
+  const currentAnimationSpeed = useSelector(selectCurrentAnimationSpeed);
   const headerData = [
     {
       name: "Algorithms",
@@ -46,7 +54,10 @@ export default function Header() {
       },
     },
     {
-      name: "Obstacles",
+      name: `Obstacle: ${
+        //capitalize first char
+        currentObstacle.charAt(0).toUpperCase() + currentObstacle.slice(1)
+      }`,
       dropdownItems: [
         {
           name: "Wall",
@@ -63,7 +74,13 @@ export default function Header() {
       ],
     },
     {
-      name: "Speed",
+      name: `Speed: ${
+        currentAnimationSpeed === 33
+          ? "Fast"
+          : currentAnimationSpeed === 66
+          ? "Medium"
+          : "Slow"
+      }`,
       dropdownItems: [
         {
           name: "Fast",
@@ -96,7 +113,7 @@ export default function Header() {
         dispatch(resetBoard());
       },
     },
-    { name: "Visualize", dropdownItems: [] },
+    { name: `Visualize ${currentPathfindingAlgorithm}`, dropdownItems: [] },
   ];
   const mobileMenuOpen = useSelector(selectMobileMenuOpen);
   const handleMobileMenuClick = () => {
