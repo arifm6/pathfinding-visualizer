@@ -47,7 +47,7 @@ export default function Header() {
       ],
     },
     {
-      name: "Add Carrot",
+      name: `Add Carrot`,
       dropdownItems: [],
       handleClick: function () {
         dispatch(addCarrot());

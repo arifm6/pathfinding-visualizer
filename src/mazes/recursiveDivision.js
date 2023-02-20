@@ -5,10 +5,6 @@ var board = store.getState().board.boardArray;
 
 var currentObstacle = store.getState().header.currentObstacle;
 var animationSpeed = store.getState().header.currentAnimationSpeed;
-var boardSize = {
-  rows: store.getState().board.height,
-  cols: store.getState().board.width,
-};
 var timerCounter = 0;
 const HORIZONTAL = "horizontal",
   VERTICAL = "vertical";
@@ -26,7 +22,7 @@ function chooseOrientation(width, height) {
   }
 }
 
-function divide(boardSize, rowStart, rowEnd, colStart, colEnd, orientation) {
+function divide(rowStart, rowEnd, colStart, colEnd, orientation) {
   //for right/bottom recusrive subfield
   if (rowEnd < rowStart || colEnd < colStart) {
     return;
@@ -59,21 +55,14 @@ function divide(boardSize, rowStart, rowEnd, colStart, colEnd, orientation) {
       }
     }
     if (currentRow - 2 - rowStart > colEnd - colStart) {
-      divide(
-        boardSize,
-        rowStart,
-        currentRow - 2,
-        colStart,
-        colEnd,
-        orientation
-      );
+      divide(rowStart, currentRow - 2, colStart, colEnd, orientation);
     } else {
-      divide(boardSize, rowStart, currentRow - 2, colStart, colEnd, "vertical");
+      divide(rowStart, currentRow - 2, colStart, colEnd, "vertical");
     }
     if (rowEnd - (currentRow + 2) > colEnd - colStart) {
-      divide(boardSize, currentRow + 2, rowEnd, colStart, colEnd, orientation);
+      divide(currentRow + 2, rowEnd, colStart, colEnd, orientation);
     } else {
-      divide(boardSize, currentRow + 2, rowEnd, colStart, colEnd, "vertical");
+      divide(currentRow + 2, rowEnd, colStart, colEnd, "vertical");
     }
   } else {
     let possibleCols = [];
@@ -104,28 +93,14 @@ function divide(boardSize, rowStart, rowEnd, colStart, colEnd, orientation) {
     }
 
     if (rowEnd - rowStart > currentCol - 2 - colStart) {
-      divide(
-        boardSize,
-        rowStart,
-        rowEnd,
-        colStart,
-        currentCol - 2,
-        "horizontal"
-      );
+      divide(rowStart, rowEnd, colStart, currentCol - 2, "horizontal");
     } else {
-      divide(
-        boardSize,
-        rowStart,
-        rowEnd,
-        colStart,
-        currentCol - 2,
-        orientation
-      );
+      divide(rowStart, rowEnd, colStart, currentCol - 2, orientation);
     }
     if (rowEnd - rowStart > colEnd - (currentCol + 2)) {
-      divide(boardSize, rowStart, rowEnd, currentCol + 2, colEnd, "horizontal");
+      divide(rowStart, rowEnd, currentCol + 2, colEnd, "horizontal");
     } else {
-      divide(boardSize, rowStart, rowEnd, currentCol + 2, colEnd, orientation);
+      divide(rowStart, rowEnd, currentCol + 2, colEnd, orientation);
     }
   }
 }
@@ -136,7 +111,7 @@ export function recursiveDivision() {
   board = store.getState().board.boardArray;
   currentObstacle = store.getState().header.currentObstacle;
   animationSpeed = store.getState().header.currentAnimationSpeed;
-  boardSize = {
+  var boardSize = {
     rows: store.getState().board.height,
     cols: store.getState().board.width,
   };
@@ -170,7 +145,6 @@ export function recursiveDivision() {
     }, timerCounter * animationSpeed);
   }
   divide(
-    boardSize,
     2,
     boardSize.rows - 3,
     2,
