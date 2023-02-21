@@ -42,17 +42,20 @@
     @apply absolute w-8 h-8;
   }
   .start-node {
-    @apply bg-green-400;
+    background-image: url("../public/start.png") !important;
+    background-size: 100% 100%;
     animation-name: node-circle-expand;
     animation-duration: 0.5s;
   }
   .finish-node {
-    @apply bg-red-400;
+    background-image: url("../public/finish.png") !important;
+    background-size: 100% 100%;
     animation-name: node-circle-expand;
     animation-duration: 0.5s;
   }
   .carrot-node {
-    @apply bg-orange-400;
+    background-image: url("../public/carrot.png") !important;
+    background-size: 100% 100%;
     animation-name: node-circle-expand;
     animation-duration: 0.5s;
   }
@@ -66,5 +69,80 @@
     background-size: 100% 100%;
     animation-name: node-circle-expand;
     animation-duration: 0.5s;
+  }
+  @keyframes start-to-carrot-animation {
+    0% {
+      height: 0px;
+      width: 0px;
+      border-radius: 100%;
+      background-color: #8bd3e6;
+      transform: scale(1);
+    }
+    90% {
+      height: 110%;
+      width: 110%;
+      border-radius: 5%;
+      transform: scale(1.1);
+    }
+    100% {
+      height: 100%;
+      width: 100%;
+      border-radius: 0%;
+      background-color: #007096;
+      transform: scale(1);
+    }
+  }
+  .start-to-carrot {
+    @apply border-[#FDBF57] border-[0.5px];
+
+    background-color: #007096;
+    animation-name: start-to-carrot-animation;
+    animation-duration: 1s;
+  }
+  @keyframes carrot-to-finish-animation {
+    0% {
+      height: 0px;
+      width: 0px;
+      border-radius: 100%;
+      background-color: #56002a;
+      transform: scale(1);
+    }
+    90% {
+      height: 110%;
+      width: 110%;
+      border-radius: 5%;
+      background-color: #7a003c;
+      transform: scale(1.1);
+    }
+    100% {
+      height: 100%;
+      width: 100%;
+      border-radius: 0%;
+      background-color: #ac1455;
+      transform: scale(1);
+    }
+  }
+  .carrot-to-finish {
+    @apply border-[#FDBF57] border-[0.5px];
+
+    background-color: #ac1455;
+    animation-name: carrot-to-finish-animation;
+    animation-duration: 1s;
+  }
+  @keyframes node-shortest-path-animation {
+    0% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .node-shortest-path {
+    background-color: #fdbf57;
+    animation-name: node-shortest-path-animation;
+    animation-duration: 1s;
   }
 }

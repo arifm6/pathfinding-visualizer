@@ -5,7 +5,7 @@ const initialState = {
   mobileMenuOpen: false,
   currentPathfindingAlgorithm: "",
   currentObstacle: "wall",
-  currentAnimationSpeed: 99,
+  currentAnimationSpeed: 33,
 };
 
 export const headerSlice = createSlice({

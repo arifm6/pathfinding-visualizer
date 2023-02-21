@@ -14,16 +14,23 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
-import { addCarrot, resetBoard } from "../slices/boardSlice";
+import {
+  addCarrot,
+  removeCarrot,
+  resetBoard,
+  selectCarrotLocation,
+} from "../slices/boardSlice";
 import { recursiveDivision } from "../mazes/recursiveDivision";
 import { randomMaze } from "../mazes/randomMaze";
 import { stairMaze } from "../mazes/stairMaze";
 import { findShortestDistance } from "../algorithms/findShortestDistance";
+import { animateAlgorithm } from "../algorithms/animateAlgorithm";
 export default function Header() {
   const dispatch = useDispatch(resetBoard());
   const currentPathfindingAlgorithm = useSelector(
     selectCurrentPathfindingAlgorithm
   );
+  const boardHasCarrot = useSelector(selectCarrotLocation).row !== -1;
   const currentObstacle = useSelector(selectCurrentObstacle);
   const currentAnimationSpeed = useSelector(selectCurrentAnimationSpeed);
   const headerData = [
@@ -34,7 +41,7 @@ export default function Header() {
           name: "Dijkstra's",
           handleClick: function () {
             dispatch(setPathfindingAlgorithm("dijkstra"));
-            findShortestDistance();
+            animateAlgorithm(findShortestDistance());
           },
         },
         { name: "A*" },
@@ -80,10 +87,14 @@ export default function Header() {
       ],
     },
     {
-      name: `Add Carrot`,
+      name: `${!boardHasCarrot ? "Add Carrot" : "Remove Carrot"}`,
       dropdownItems: [],
       handleClick: function () {
-        dispatch(addCarrot());
+        if (boardHasCarrot) {
+          dispatch(removeCarrot());
+        } else {
+          dispatch(addCarrot());
+        }
       },
     },
     {

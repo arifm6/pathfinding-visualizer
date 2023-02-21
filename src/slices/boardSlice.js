@@ -90,6 +90,13 @@ export const boardSlice = createSlice({
         state.carrotLocation.col
       ].isCarrot = true;
     },
+    removeCarrot: (state) => {
+      const boardAlias = state.boardArray;
+      boardAlias[state.carrotLocation.row][
+        state.carrotLocation.col
+      ].isCarrot = false;
+      state.carrotLocation = { row: -1, col: -1 };
+    },
     // fix reset
     resetBoard: (state) => {
       const newWidth = Math.floor(window.innerWidth / 40);
@@ -156,6 +163,7 @@ export const {
   updateBoardWidth,
   updateBoardHeight,
   addCarrot,
+  removeCarrot,
   resetBoard,
   clearBoard,
   toggleObstacle,

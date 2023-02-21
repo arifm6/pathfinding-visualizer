@@ -26,7 +26,10 @@ export default function Node({
       onMouseUp={() => handleMouseUp()}
       className="node-container"
     >
-      <div className={`node ${typeOfNode}`}></div>
+      <div
+        id={`${node.row}-${node.col}`}
+        className={`node ${typeOfNode}`}
+      ></div>
     </div>
   );
 }
