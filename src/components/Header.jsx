@@ -15,6 +15,8 @@ import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { addCarrot, resetBoard } from "../slices/boardSlice";
 import { recursiveDivision } from "../mazes/recursiveDivision";
+import { randomMaze } from "../mazes/randomMaze";
+import { stairMaze } from "../mazes/stairMaze";
 export default function Header() {
   const dispatch = useDispatch(resetBoard());
   const currentPathfindingAlgorithm = useSelector(
@@ -42,8 +44,31 @@ export default function Header() {
             recursiveDivision();
           },
         },
-        { name: "Random" },
-        { name: "Stair" },
+        {
+          name: "Recursive Division Horizontal Skew",
+          handleClick: function () {
+            recursiveDivision("horizontal");
+          },
+        },
+
+        {
+          name: "Recursive Division Vertical Skew",
+          handleClick: function () {
+            recursiveDivision("vertical");
+          },
+        },
+        {
+          name: "Random Maze",
+          handleClick: function () {
+            randomMaze();
+          },
+        },
+        {
+          name: "Stair",
+          handleClick: function () {
+            stairMaze();
+          },
+        },
       ],
     },
     {
