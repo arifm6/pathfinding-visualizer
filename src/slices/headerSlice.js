@@ -18,6 +18,9 @@ export const headerSlice = createSlice({
     toggleMobileMenuOpen: (state) => {
       state.mobileMenuOpen = !state.mobileMenuOpen;
     },
+    setPathfindingAlgorithm: (state, action) => {
+      state.currentPathfindingAlgorithm = action.payload;
+    },
     setWall: (state) => {
       state.currentObstacle = "wall";
     },
@@ -34,7 +37,7 @@ export const headerSlice = createSlice({
 export const {
   updateCurrentDropdown,
   toggleMobileMenuOpen,
-  addCarrotHeader,
+  setPathfindingAlgorithm,
   setWall,
   setWeight,
   setAnimationSpeed,

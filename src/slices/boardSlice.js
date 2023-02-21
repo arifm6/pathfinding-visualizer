@@ -65,6 +65,9 @@ const initialHeight = Math.floor(window.innerHeight / 45);
 const initialState = {
   width: initialWidth,
   height: initialHeight,
+  startLocation: getStartingLocation(initialWidth, initialHeight),
+  finishLocation: getFinishLocation(initialWidth, initialHeight),
+  carrotLocation: { row: -1, col: -1 },
   //a 2d array of nodes
   boardArray: generateBoard(initialWidth, initialHeight), //array of nodes
 };
@@ -95,6 +98,9 @@ export const boardSlice = createSlice({
       state.width = newWidth;
       state.height = newHeight;
       state.boardArray = generateBoard(newWidth, newHeight);
+      state.startLocation = getStartingLocation(newWidth, newHeight);
+      state.finishLocation = getFinishLocation(newWidth, newHeight);
+      state.carrotLocation = { row: -1, col: -1 };
     },
     clearBoard: (state) => {
       removeObstacles(state.boardArray);
@@ -126,15 +132,21 @@ export const boardSlice = createSlice({
       const { row, col } = action.payload;
       state.boardArray[row][col].isFinish =
         !state.boardArray[row][col].isFinish;
+      state.finishLocation = { row, col };
     },
     toggleStart: (state, action) => {
       const { row, col } = action.payload;
       state.boardArray[row][col].isStart = !state.boardArray[row][col].isStart;
+      state.startLocation = { row, col };
     },
     toggleCarrot: (state, action) => {
       const { row, col } = action.payload;
       state.boardArray[row][col].isCarrot =
         !state.boardArray[row][col].isCarrot;
+      state.carrotLocation = { row, col };
+    },
+    removeCarrotLocation: (state) => {
+      state.carrotLocation = { row: -1, col: -1 };
     },
   },
 });
@@ -150,6 +162,7 @@ export const {
   toggleFinish,
   toggleStart,
   toggleCarrot,
+  removeCarrotLocation,
 } = boardSlice.actions;
 export const selectBoardWidth = (state) => state.board.width;
 export const selectBoardHeight = (state) => state.board.height;

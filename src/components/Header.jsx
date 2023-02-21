@@ -6,6 +6,7 @@ import {
   selectCurrentPathfindingAlgorithm,
   selectMobileMenuOpen,
   setAnimationSpeed,
+  setPathfindingAlgorithm,
   setWall,
   setWeight,
   toggleMobileMenuOpen,
@@ -17,6 +18,7 @@ import { addCarrot, resetBoard } from "../slices/boardSlice";
 import { recursiveDivision } from "../mazes/recursiveDivision";
 import { randomMaze } from "../mazes/randomMaze";
 import { stairMaze } from "../mazes/stairMaze";
+import { findShortestDistance } from "../algorithms/findShortestDistance";
 export default function Header() {
   const dispatch = useDispatch(resetBoard());
   const currentPathfindingAlgorithm = useSelector(
@@ -28,7 +30,13 @@ export default function Header() {
     {
       name: "Algorithms",
       dropdownItems: [
-        { name: "Dijkstra's" },
+        {
+          name: "Dijkstra's",
+          handleClick: function () {
+            dispatch(setPathfindingAlgorithm("dijkstra"));
+            findShortestDistance();
+          },
+        },
         { name: "A*" },
         { name: "Swarm" },
         { name: "Breadth-First Search" },
