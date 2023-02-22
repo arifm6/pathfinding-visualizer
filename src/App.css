@@ -145,4 +145,13 @@
     animation-name: node-shortest-path-animation;
     animation-duration: 1s;
   }
+  .start-to-carrot-instant {
+    @apply border-[#FDBF57] border-[0.5px];
+    background-color: #007096;
+  }
+  .carrot-to-finish-instant {
+    @apply border-[#FDBF57] border-[0.5px];
+
+    background-color: #ac1455;
+  }
 }

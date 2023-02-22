@@ -7,6 +7,7 @@ const initialState = {
   currentObstacle: "wall",
   currentAnimationSpeed: 33,
   isAnimating: false,
+  hasAnimated: false,
   currentAlgorithmOutput: {
     visitedNodesInOrder: { startToCarrot: [], carrotToFinish: [] },
     nodesInShortestPathOrder: [],
@@ -41,6 +42,9 @@ export const headerSlice = createSlice({
     setIsAnimating: (state, action) => {
       state.isAnimating = action.payload;
     },
+    setHasAnimated: (state, action) => {
+      state.hasAnimated = action.payload;
+    },
   },
 });
 
@@ -54,6 +58,7 @@ export const {
   setWeight,
   setAnimationSpeed,
   setIsAnimating,
+  setHasAnimated,
 } = headerSlice.actions;
 
 export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
@@ -64,4 +69,5 @@ export const selectCurrentObstacle = (state) => state.header.currentObstacle;
 export const selectCurrentAnimationSpeed = (state) =>
   state.header.currentAnimationSpeed;
 export const selectIsAnimating = (state) => state.header.isAnimating;
+export const selectHasAnimated = (state) => state.header.hasAnimated;
 export default headerSlice.reducer;

@@ -6,6 +6,7 @@ import {
   selectCurrentPathfindingAlgorithm,
   selectMobileMenuOpen,
   setAnimationSpeed,
+  setHasAnimated,
   setPathfindingAlgorithm,
   setWall,
   setWeight,
@@ -167,6 +168,8 @@ export default function Header() {
     name: "Reset",
     handleClick: function () {
       dispatch(resetBoard());
+      dispatch(setHasAnimated(false));
+      dispatch(setPathfindingAlgorithm(""));
     },
   };
   const visualize = {
@@ -177,6 +180,7 @@ export default function Header() {
     }`,
     handleClick: function () {
       currentPathfindingAlgorithm && animateAlgorithm();
+      dispatch(setHasAnimated(true));
     },
   };
   const mobileMenuOpen = useSelector(selectMobileMenuOpen);
