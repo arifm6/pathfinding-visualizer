@@ -86,7 +86,7 @@ export default function Board() {
     <div
       className={` ${
         animationInProgress && "pointer-events-none"
-      } overflow-x-hidden mt-12`}
+      } overflow-x-hidden overflow-y-hidden mt-12`}
     >
       <table className="mx-auto">
         <tbody>
