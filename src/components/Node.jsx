@@ -18,8 +18,12 @@ export default function Node({
     : node.obstacle === "weight"
     ? "weight-node"
     : "";
+  //on drag start part is used to prevent default drag
   return (
     <div
+      onDragStart={() => {
+        return false;
+      }}
       onMouseDown={() => handleMouseDown()}
       onMouseEnter={() => handleMouseEnter()}
       onMouseLeave={() => handleMouseExit()}
