@@ -1,4 +1,3 @@
-import { removeCarrotLocation, toggleCarrot } from "../slices/boardSlice";
 import { updateCurrentAlgorithmOutput } from "../slices/headerSlice";
 import { store } from "../store";
 import { dijkstra } from "./dijkstra";
