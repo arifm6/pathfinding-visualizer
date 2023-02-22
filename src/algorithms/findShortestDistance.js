@@ -8,26 +8,22 @@ export function findShortestDistance() {
   const board = store.getState().board;
   const pathfindingAlgorithm =
     store.getState().header.currentPathfindingAlgorithm;
-  var boardLock = false;
   const startLocation = board.startLocation;
+  const carrotLocation = board.carrotLocation;
+  const finishLocation = board.finishLocation;
   var output = { visitedNodesInOrder: [], nodesInShortestPathOrder: [] };
-  //create a lock on the carrot location so you can turn it back into what it originally was.
-  if (board.carrotLocation.row === -1) {
-    boardLock = true;
 
-    store.dispatch(
-      toggleCarrot(board.boardArray[startLocation.row][startLocation.col])
-    );
-  }
+  //if no carrot, node 1 = node 2
+  const node1 = board.boardArray[startLocation.row][startLocation.col];
+  const node2 =
+    carrotLocation.row === -1
+      ? board.boardArray[startLocation.row][startLocation.col]
+      : board.boardArray[carrotLocation.row][carrotLocation.col];
+  const node3 = board.boardArray[finishLocation.row][finishLocation.col];
+  //create a lock on the carrot location so you can turn it back into what it originally was.
   if (pathfindingAlgorithm === "dijkstra") {
-    output = dijkstra();
+    output = dijkstra(node1, node2, node3);
   }
   //actual code here
-  if (boardLock) {
-    store.dispatch(
-      toggleCarrot(board.boardArray[startLocation.row][startLocation.col])
-    );
-    store.dispatch(removeCarrotLocation());
-  }
   store.dispatch(updateCurrentAlgorithmOutput(output));
 }

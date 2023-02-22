@@ -71,7 +71,6 @@ const initialState = {
   //a 2d array of nodes
   boardArray: generateBoard(initialWidth, initialHeight), //array of nodes
   //hackey way to implement with use effect... learned a lesson to not update in findshortestdistance and do that carrot cheese... fix later
-  boardHasChanged: 0,
 };
 
 export const boardSlice = createSlice({
@@ -91,7 +90,6 @@ export const boardSlice = createSlice({
       boardAlias[state.carrotLocation.row][
         state.carrotLocation.col
       ].isCarrot = true;
-      state.boardHasChanged++;
     },
     removeCarrot: (state) => {
       const boardAlias = state.boardArray;
@@ -99,7 +97,6 @@ export const boardSlice = createSlice({
         state.carrotLocation.col
       ].isCarrot = false;
       state.carrotLocation = { row: -1, col: -1 };
-      state.boardHasChanged++;
     },
     // fix reset
     resetBoard: (state) => {
@@ -155,20 +152,17 @@ export const boardSlice = createSlice({
           state.boardArray[row][col].obstacle = "";
         }
       }
-      state.boardHasChanged++;
     },
     toggleFinish: (state, action) => {
       const { row, col } = action.payload;
       state.boardArray[row][col].isFinish =
         !state.boardArray[row][col].isFinish;
       state.finishLocation = { row, col };
-      state.boardHasChanged++;
     },
     toggleStart: (state, action) => {
       const { row, col } = action.payload;
       state.boardArray[row][col].isStart = !state.boardArray[row][col].isStart;
       state.startLocation = { row, col };
-      state.boardHasChanged++;
     },
     toggleCarrot: (state, action) => {
       const { row, col } = action.payload;
@@ -202,5 +196,4 @@ export const selectBoardArray = (state) => state.board.boardArray;
 export const selectStartLocation = (state) => state.board.startLocation;
 export const selectFinishLocation = (state) => state.board.finishLocation;
 export const selectCarrotLocation = (state) => state.board.carrotLocation;
-export const selectBoardHasChanged = (state) => state.board.boardHasChanged;
 export default boardSlice.reducer;

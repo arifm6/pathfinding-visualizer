@@ -1,3 +1,4 @@
+import { findShortestDistance } from "../algorithms/findShortestDistance";
 import { clearBoard, toggleObstacle } from "../slices/boardSlice";
 import { store } from "../store";
 
@@ -26,4 +27,7 @@ export function stairMaze() {
       }
     }, animationSpeed * timerCounter);
   }
+  setTimeout(() => {
+    findShortestDistance();
+  }, animationSpeed * timerCounter);
 }

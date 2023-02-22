@@ -1,3 +1,4 @@
+import { findShortestDistance } from "../algorithms/findShortestDistance";
 import { clearBoard, toggleObstacle } from "../slices/boardSlice";
 import { setIsAnimating } from "../slices/headerSlice";
 import { store } from "../store";
@@ -355,5 +356,6 @@ export function recursiveDivision(skew = "") {
   }
   setTimeout(() => {
     store.dispatch(setIsAnimating(false));
+    findShortestDistance();
   }, timerCounter * animationSpeed);
 }

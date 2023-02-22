@@ -2,10 +2,9 @@ import { store } from "../store";
 
 const cloneDeep = require("clone-deep");
 //need to do this twice, once from start to carrot. and next from carrot to finish.
-export function dijkstra() {
-  const startToCarr = startToCarrot();
-  const carrotToEnd = carrotToFinish();
-
+export function dijkstra(node1, node2, node3) {
+  const startToCarr = getShortestPath(node1, node2);
+  const carrotToEnd = getShortestPath(node2, node3);
   const startToFinish = {
     visitedNodesInOrder: {
       startToCarrot: startToCarr.visitedNodesInOrder,
@@ -19,76 +18,20 @@ export function dijkstra() {
   return startToFinish;
 }
 
-function startToCarrot() {
+function getShortestPath(node1, node2) {
   const boardState = store.getState().board;
   const board = cloneDeep(boardState.boardArray);
 
-  const startingNode =
-    board[boardState.startLocation.row][boardState.startLocation.col];
-  const carrotNode =
-    board[boardState.carrotLocation.row][boardState.carrotLocation.col];
+  const startingNode = board[node1.row][node1.col];
+  const finishNode = board[node2.row][node2.col];
   startingNode.obstacle = "";
-  carrotNode.obstacle = "";
-  startingNode.weight = 1;
-  carrotNode.weight = 1;
-  //start by visiting nearest neighbours and updating their path.
-  //store visitedNodes
-  const visitedNodesInOrder = [];
-  startingNode.distance = 0;
-  //VISIT NEIGHBOURS AND THEN POP THEM OUT OF THE ARRAY WHEN THEY ARE VISITED AND VISIT THEIR NEIGHBOURS.
-  const unvisitedNodes = getAllNodes(board);
-  while (unvisitedNodes.length) {
-    //first sort unvisited nodes
-    unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
-
-    //then visit neighbours and update distance.
-    const currentNode = unvisitedNodes.shift();
-
-    //if the current node is a wall, skip it
-    if (currentNode.obstacle === "wall") {
-      continue;
-    }
-    //remember that if the current nodes distance = infinity, then you must have went through the sorted unvisited nodes array and still reached a value that is infinity so you are trapped.
-    if (currentNode.distance === Infinity) {
-      return {
-        visitedNodesInOrder,
-        nodesInShortestPathOrder: nodesInShortestPath(carrotNode),
-      };
-    }
-    currentNode.isVisited = true;
-    visitedNodesInOrder.push(currentNode);
-    if (currentNode === carrotNode) {
-      return {
-        visitedNodesInOrder,
-        nodesInShortestPathOrder: nodesInShortestPath(carrotNode),
-      };
-    }
-
-    updateUnvisitedNeighbours(board, currentNode);
-  }
-  // if the finish node is a wall node, this accounts for that
-  return {
-    visitedNodesInOrder,
-    nodesInShortestPathOrder: nodesInShortestPath(carrotNode.previousNode),
-  };
-}
-
-function carrotToFinish() {
-  const boardState = store.getState().board;
-  const board = cloneDeep(boardState.boardArray);
-
-  const carrotNode =
-    board[boardState.carrotLocation.row][boardState.carrotLocation.col];
-  const finishNode =
-    board[boardState.finishLocation.row][boardState.finishLocation.col];
-  carrotNode.obstacle = "";
   finishNode.obstacle = "";
-  carrotNode.weight = 1;
+  startingNode.weight = 1;
   finishNode.weight = 1;
   //start by visiting nearest neighbours and updating their path.
   //store visitedNodes
   const visitedNodesInOrder = [];
-  carrotNode.distance = 0;
+  startingNode.distance = 0;
   //VISIT NEIGHBOURS AND THEN POP THEM OUT OF THE ARRAY WHEN THEY ARE VISITED AND VISIT THEIR NEIGHBOURS.
   const unvisitedNodes = getAllNodes(board);
   while (unvisitedNodes.length) {
@@ -126,6 +69,7 @@ function carrotToFinish() {
     nodesInShortestPathOrder: nodesInShortestPath(finishNode.previousNode),
   };
 }
+
 function getAllNodes(board) {
   const allNodes = [];
   for (const row of board) {

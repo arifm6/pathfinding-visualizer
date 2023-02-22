@@ -65,6 +65,7 @@ export default function Header() {
         name: "Recursive Division",
         id: "recursive division",
         handleClick: function () {
+          dispatch(setHasAnimated(false));
           recursiveDivision();
         },
       },
@@ -72,6 +73,8 @@ export default function Header() {
         name: "Recursive Division Horizontal Skew",
         id: "recursive division horizontal skew",
         handleClick: function () {
+          dispatch(setHasAnimated(false));
+
           recursiveDivision("horizontal");
         },
       },
@@ -80,6 +83,8 @@ export default function Header() {
         name: "Recursive Division Vertical Skew",
         id: "recursive division vertical skew",
         handleClick: function () {
+          dispatch(setHasAnimated(false));
+
           recursiveDivision("vertical");
         },
       },
@@ -87,6 +92,8 @@ export default function Header() {
         name: "Random Maze",
         id: "random maze",
         handleClick: function () {
+          dispatch(setHasAnimated(false));
+
           randomMaze();
         },
       },
@@ -94,6 +101,8 @@ export default function Header() {
         name: "Stair",
         id: "stair",
         handleClick: function () {
+          dispatch(setHasAnimated(false));
+
           stairMaze();
         },
       },

@@ -4,7 +4,6 @@ import { instantAnimateAlgorithm } from "../algorithms/animateAlgorithm";
 import { findShortestDistance } from "../algorithms/findShortestDistance";
 import {
   selectBoardArray,
-  selectBoardHasChanged,
   toggleCarrot,
   toggleFinish,
   toggleObstacle,
@@ -30,16 +29,18 @@ export default function Board() {
   const currentObstacle = useSelector(selectCurrentObstacle);
   const animationInProgress = useSelector(selectIsAnimating);
   const hasAnimated = useSelector(selectHasAnimated);
-  const boardHasChanged = useSelector(selectBoardHasChanged);
   const dispatch = useDispatch();
   useEffect(() => {
+    if (animationInProgress) {
+      return;
+    }
     findShortestDistance();
 
     if (!hasAnimated) {
       return;
     }
     instantAnimateAlgorithm();
-  }, [boardHasChanged]);
+  }, [boardArray]);
   //only used for handling obstacle
   const handleMouseDown = (node) => {
     dispatch(setMouseIsPressed());
