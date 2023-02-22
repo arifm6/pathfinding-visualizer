@@ -6,6 +6,7 @@ const initialState = {
   currentPathfindingAlgorithm: "",
   currentObstacle: "wall",
   currentAnimationSpeed: 33,
+  isAnimating: false,
 };
 
 export const headerSlice = createSlice({
@@ -30,6 +31,9 @@ export const headerSlice = createSlice({
     setAnimationSpeed: (state, action) => {
       state.currentAnimationSpeed = action.payload;
     },
+    setIsAnimating: (state, action) => {
+      state.isAnimating = action.payload;
+    },
   },
 });
 
@@ -41,6 +45,7 @@ export const {
   setWall,
   setWeight,
   setAnimationSpeed,
+  setIsAnimating,
 } = headerSlice.actions;
 
 export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
@@ -50,4 +55,5 @@ export const selectCurrentPathfindingAlgorithm = (state) =>
 export const selectCurrentObstacle = (state) => state.header.currentObstacle;
 export const selectCurrentAnimationSpeed = (state) =>
   state.header.currentAnimationSpeed;
+export const selectIsAnimating = (state) => state.header.isAnimating;
 export default headerSlice.reducer;

@@ -99,6 +99,12 @@ export const boardSlice = createSlice({
     },
     // fix reset
     resetBoard: (state) => {
+      document.querySelectorAll(".node").forEach((node) => {
+        node.classList.remove("carrot-to-finish");
+        node.classList.remove("start-to-carrot");
+        node.classList.remove("node-shortest-path");
+      });
+
       const newWidth = Math.floor(window.innerWidth / 40);
       const newHeight = Math.floor(window.innerHeight / 45);
 
@@ -110,6 +116,12 @@ export const boardSlice = createSlice({
       state.carrotLocation = { row: -1, col: -1 };
     },
     clearBoard: (state) => {
+      document.querySelectorAll(".node").forEach((node) => {
+        node.classList.remove("carrot-to-finish");
+        node.classList.remove("start-to-carrot");
+        node.classList.remove("node-shortest-path");
+      });
+
       removeObstacles(state.boardArray);
     },
     //all it needs is the current node and current obstacle as {node, obstacle}

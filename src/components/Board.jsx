@@ -7,7 +7,10 @@ import {
   toggleObstacle,
   toggleStart,
 } from "../slices/boardSlice";
-import { selectCurrentObstacle } from "../slices/headerSlice";
+import {
+  selectCurrentObstacle,
+  selectIsAnimating,
+} from "../slices/headerSlice";
 import {
   selectIsPressed,
   selectWhatIsPressed,
@@ -21,6 +24,8 @@ export default function Board() {
   const mouseIsPressed = useSelector(selectIsPressed);
   const whatIsPressed = useSelector(selectWhatIsPressed);
   const currentObstacle = useSelector(selectCurrentObstacle);
+  const animationInProgress = useSelector(selectIsAnimating);
+
   const dispatch = useDispatch();
 
   //only used for handling obstacle
@@ -65,7 +70,11 @@ export default function Board() {
     dispatch(setMouseIsLifted());
   };
   return (
-    <div className="overflow-x-scroll mt-12">
+    <div
+      className={` ${
+        animationInProgress && "pointer-events-none"
+      } overflow-x-scroll mt-12`}
+    >
       <table className="mx-auto">
         <tbody>
           {boardArray.map((row, rowIndex) => {

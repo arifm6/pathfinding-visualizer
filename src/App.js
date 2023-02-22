@@ -8,7 +8,6 @@ import {
 } from "./slices/headerSlice";
 function App() {
   const dispatch = useDispatch();
-
   const currentDropdown = useSelector(selectCurrentDropdown);
   const handleClick = (e) => {
     e.target.innerHTML === currentDropdown
@@ -17,7 +16,7 @@ function App() {
   };
 
   return (
-    <div className="App min-h-screen w-screen" onClick={(e) => handleClick(e)}>
+    <div className=" App min-h-screen w-screen" onClick={(e) => handleClick(e)}>
       <Header />
       <Board />
     </div>

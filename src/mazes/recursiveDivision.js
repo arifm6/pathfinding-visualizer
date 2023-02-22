@@ -1,4 +1,5 @@
 import { clearBoard, toggleObstacle } from "../slices/boardSlice";
+import { setIsAnimating } from "../slices/headerSlice";
 import { store } from "../store";
 
 var board = store.getState().board.boardArray;
@@ -290,7 +291,7 @@ function verticalDivide(rowStart, rowEnd, colStart, colEnd, orientation) {
 
 export function recursiveDivision(skew = "") {
   store.dispatch(clearBoard());
-
+  store.dispatch(setIsAnimating(true));
   board = store.getState().board.boardArray;
   currentObstacle = store.getState().header.currentObstacle;
   animationSpeed = store.getState().header.currentAnimationSpeed;
@@ -352,4 +353,7 @@ export function recursiveDivision(skew = "") {
       chooseOrientation(boardSize.cols, boardSize.rows)
     );
   }
+  setTimeout(() => {
+    store.dispatch(setIsAnimating(false));
+  }, timerCounter * animationSpeed);
 }

@@ -1,3 +1,4 @@
+import { setIsAnimating } from "../slices/headerSlice";
 import { store } from "../store";
 
 var animationSpeed = store.getState().header.currentAnimationSpeed;
@@ -5,6 +6,7 @@ export function animateAlgorithm({
   visitedNodesInOrder,
   nodesInShortestPathOrder,
 }) {
+  store.dispatch(setIsAnimating(true));
   animationSpeed = store.getState().header.currentAnimationSpeed;
   document.querySelectorAll(".node").forEach((node) => {
     node.classList.remove("carrot-to-finish");
@@ -43,4 +45,7 @@ export function animateAlgorithm({
       node.classList.add("node-shortest-path");
     }, animationSpeed * timerCounter);
   }
+  setTimeout(() => {
+    store.dispatch(setIsAnimating(false));
+  }, animationSpeed * timerCounter);
 }

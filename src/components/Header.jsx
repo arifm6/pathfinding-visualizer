@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderDropdown from "./HeaderDropdown";
 import {
   selectCurrentAnimationSpeed,
@@ -33,6 +33,13 @@ export default function Header() {
   const boardHasCarrot = useSelector(selectCarrotLocation).row !== -1;
   const currentObstacle = useSelector(selectCurrentObstacle);
   const currentAnimationSpeed = useSelector(selectCurrentAnimationSpeed);
+  function pathfindingAlgorithmName(pathfindingAlgorithm) {
+    if (pathfindingAlgorithm === "dijkstra") {
+      return "Dijkstra's";
+    }
+    return "";
+  }
+
   const headerData = [
     {
       name: "Algorithms",
@@ -41,7 +48,6 @@ export default function Header() {
           name: "Dijkstra's",
           handleClick: function () {
             dispatch(setPathfindingAlgorithm("dijkstra"));
-            animateAlgorithm(findShortestDistance());
           },
         },
         { name: "A*" },
@@ -157,7 +163,17 @@ export default function Header() {
         dispatch(resetBoard());
       },
     },
-    { name: `Visualize ${currentPathfindingAlgorithm}`, dropdownItems: [] },
+    {
+      name: `${
+        currentPathfindingAlgorithm
+          ? `Visualize ${pathfindingAlgorithmName(currentPathfindingAlgorithm)}`
+          : "Pick An Algorithm"
+      }`,
+      dropdownItems: [],
+      handleClick: function () {
+        currentPathfindingAlgorithm && animateAlgorithm(findShortestDistance());
+      },
+    },
   ];
   const mobileMenuOpen = useSelector(selectMobileMenuOpen);
   const handleMobileMenuClick = () => {
