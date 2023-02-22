@@ -2,10 +2,9 @@ import { setIsAnimating } from "../slices/headerSlice";
 import { store } from "../store";
 
 var animationSpeed = store.getState().header.currentAnimationSpeed;
-export function animateAlgorithm({
-  visitedNodesInOrder,
-  nodesInShortestPathOrder,
-}) {
+export function animateAlgorithm() {
+  var { nodesInShortestPathOrder, visitedNodesInOrder } =
+    store.getState().header.currentAlgorithmOutput;
   store.dispatch(setIsAnimating(true));
   animationSpeed = store.getState().header.currentAnimationSpeed;
   document.querySelectorAll(".node").forEach((node) => {

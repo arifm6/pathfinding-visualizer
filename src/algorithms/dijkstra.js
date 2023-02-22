@@ -1,4 +1,3 @@
-import { clearBoard, toggleObstacle } from "../slices/boardSlice";
 import { store } from "../store";
 
 const cloneDeep = require("clone-deep");
@@ -17,8 +16,6 @@ export function dijkstra() {
       ...carrotToEnd.nodesInShortestPathOrder,
     ],
   };
-  return startToFinish;
-
   return startToFinish;
 }
 

@@ -1,4 +1,5 @@
 import { removeCarrotLocation, toggleCarrot } from "../slices/boardSlice";
+import { updateCurrentAlgorithmOutput } from "../slices/headerSlice";
 import { store } from "../store";
 import { dijkstra } from "./dijkstra";
 //the idea behind this is to always assume there is a carrot. however, check if the carrot actually exists and if it doesnt,
@@ -28,5 +29,5 @@ export function findShortestDistance() {
     );
     store.dispatch(removeCarrotLocation());
   }
-  return output;
+  store.dispatch(updateCurrentAlgorithmOutput(output));
 }

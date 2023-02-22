@@ -7,6 +7,10 @@ const initialState = {
   currentObstacle: "wall",
   currentAnimationSpeed: 33,
   isAnimating: false,
+  currentAlgorithmOutput: {
+    visitedNodesInOrder: { startToCarrot: [], carrotToFinish: [] },
+    nodesInShortestPathOrder: [],
+  },
 };
 
 export const headerSlice = createSlice({
@@ -21,6 +25,9 @@ export const headerSlice = createSlice({
     },
     setPathfindingAlgorithm: (state, action) => {
       state.currentPathfindingAlgorithm = action.payload;
+    },
+    updateCurrentAlgorithmOutput: (state, action) => {
+      state.currentAlgorithmOutput = action.payload;
     },
     setWall: (state) => {
       state.currentObstacle = "wall";
@@ -42,6 +49,7 @@ export const {
   updateCurrentDropdown,
   toggleMobileMenuOpen,
   setPathfindingAlgorithm,
+  updateCurrentAlgorithmOutput,
   setWall,
   setWeight,
   setAnimationSpeed,
