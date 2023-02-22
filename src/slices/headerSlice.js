@@ -5,7 +5,7 @@ const initialState = {
   mobileMenuOpen: false,
   currentPathfindingAlgorithm: "",
   currentObstacle: "wall",
-  currentAnimationSpeed: 33,
+  currentAnimationSpeed: 25,
   isAnimating: false,
   hasAnimated: false,
   currentAlgorithmOutput: {

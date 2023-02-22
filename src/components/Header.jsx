@@ -143,30 +143,30 @@ export default function Header() {
 
   const speed = {
     name: `Speed: ${
-      currentAnimationSpeed === 33
+      currentAnimationSpeed === 25
         ? "Fast"
-        : currentAnimationSpeed === 66
+        : currentAnimationSpeed === 50
         ? "Medium"
         : "Slow"
     }`,
     dropdownItems: [
       {
         name: "Fast",
-        value: 33,
+        value: 25,
         handleClick: function () {
           dispatch(setAnimationSpeed(this.value));
         },
       },
       {
         name: "Medium",
-        value: 66,
+        value: 50,
         handleClick: function () {
           dispatch(setAnimationSpeed(this.value));
         },
       },
       {
         name: "Slow",
-        value: 99,
+        value: 100,
         handleClick: function () {
           dispatch(setAnimationSpeed(this.value));
         },
