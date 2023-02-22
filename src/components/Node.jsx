@@ -18,16 +18,10 @@ export default function Node({
     : node.obstacle === "weight"
     ? "weight-node"
     : "";
-  //on drag start part is used to prevent default drag
+  //e for mouse down is used to prevent default which is dragging cell
   return (
     <div
-      onDragStart={() => {
-        return false;
-      }}
-      onDrop={() => {
-        return false;
-      }}
-      onMouseDown={() => handleMouseDown()}
+      onMouseDown={(e) => handleMouseDown(e)}
       onMouseEnter={() => handleMouseEnter()}
       onMouseLeave={() => handleMouseExit()}
       onMouseUp={() => handleMouseUp()}

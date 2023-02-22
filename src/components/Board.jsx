@@ -42,7 +42,9 @@ export default function Board() {
     instantAnimateAlgorithm();
   }, [boardArray]);
   //only used for handling obstacle
-  const handleMouseDown = (node) => {
+  const handleMouseDown = (e, node) => {
+    e.preventDefault();
+
     dispatch(setMouseIsPressed());
     if (node.isFinish) {
       dispatch(setWhatIsPressed("finish"));
@@ -99,7 +101,7 @@ export default function Board() {
                     <td key={colIndex}>
                       <Node
                         node={col}
-                        handleMouseDown={() => handleMouseDown(col)}
+                        handleMouseDown={(e) => handleMouseDown(e, col)}
                         handleMouseEnter={() => handleMouseEnter(col)}
                         handleMouseExit={() => handleMouseExit(col)}
                         handleMouseUp={() => handleMouseUp(col)}
