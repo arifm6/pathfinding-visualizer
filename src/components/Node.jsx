@@ -24,6 +24,9 @@ export default function Node({
       onDragStart={() => {
         return false;
       }}
+      onDrop={() => {
+        return false;
+      }}
       onMouseDown={() => handleMouseDown()}
       onMouseEnter={() => handleMouseEnter()}
       onMouseLeave={() => handleMouseExit()}
