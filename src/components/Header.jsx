@@ -55,6 +55,10 @@ export default function Header() {
       {
         name: "A*",
         id: "aStar",
+        handleClick: function () {
+          dispatch(setPathfindingAlgorithm(this.id));
+          findShortestDistance();
+        },
       },
     ],
   };

@@ -1,6 +1,7 @@
 import { updateCurrentAlgorithmOutput } from "../slices/headerSlice";
 import { store } from "../store";
 import { dijkstra } from "./dijkstra";
+import { aStar } from "./aStar";
 //the idea behind this is to always assume there is a carrot. however, check if the carrot actually exists and if it doesnt,
 //temporarly make a carrot at the start location and revert when algo is finished.
 export function findShortestDistance() {
@@ -20,9 +21,13 @@ export function findShortestDistance() {
       : board.boardArray[carrotLocation.row][carrotLocation.col];
   const node3 = board.boardArray[finishLocation.row][finishLocation.col];
   //create a lock on the carrot location so you can turn it back into what it originally was.
+
   if (pathfindingAlgorithm === "dijkstra") {
     output = dijkstra(node1, node2, node3);
+  } else if (pathfindingAlgorithm === "aStar") {
+    output = aStar(node1, node2, node3);
   }
+
   //actual code here
   store.dispatch(updateCurrentAlgorithmOutput(output));
 }
