@@ -1,5 +1,5 @@
 import { findShortestDistance } from "../algorithms/findShortestDistance";
-import { clearBoard, toggleObstacle } from "../slices/boardSlice";
+import { toggleObstacle } from "../slices/boardSlice";
 import { setIsAnimating } from "../slices/headerSlice";
 import { store } from "../store";
 
@@ -291,7 +291,6 @@ function verticalDivide(rowStart, rowEnd, colStart, colEnd, orientation) {
 }
 
 export function recursiveDivision(skew = "") {
-  store.dispatch(clearBoard());
   store.dispatch(setIsAnimating(true));
   board = store.getState().board.boardArray;
   currentObstacle = store.getState().header.currentObstacle;

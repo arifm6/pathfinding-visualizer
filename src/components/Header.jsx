@@ -26,6 +26,7 @@ import { randomMaze } from "../mazes/randomMaze";
 import { stairMaze } from "../mazes/stairMaze";
 import { findShortestDistance } from "../algorithms/findShortestDistance";
 import { animateAlgorithm } from "../algorithms/animateAlgorithm";
+import { generateMaze } from "../mazes/generateMaze";
 export default function Header() {
   const dispatch = useDispatch(resetBoard());
   const currentPathfindingAlgorithm = useSelector(
@@ -37,6 +38,8 @@ export default function Header() {
   function pathfindingAlgorithmName(pathfindingAlgorithm) {
     if (pathfindingAlgorithm === "dijkstra") {
       return "Dijkstra's";
+    } else if (pathfindingAlgorithm === "aStar") {
+      return "A*";
     }
     return "";
   }
@@ -69,17 +72,14 @@ export default function Header() {
         name: "Recursive Division",
         id: "recursive division",
         handleClick: function () {
-          dispatch(setHasAnimated(false));
-          recursiveDivision();
+          generateMaze(this.id);
         },
       },
       {
         name: "Recursive Division Horizontal Skew",
         id: "recursive division horizontal skew",
         handleClick: function () {
-          dispatch(setHasAnimated(false));
-
-          recursiveDivision("horizontal");
+          generateMaze(this.id);
         },
       },
 
@@ -87,27 +87,21 @@ export default function Header() {
         name: "Recursive Division Vertical Skew",
         id: "recursive division vertical skew",
         handleClick: function () {
-          dispatch(setHasAnimated(false));
-
-          recursiveDivision("vertical");
+          generateMaze(this.id);
         },
       },
       {
         name: "Random Maze",
         id: "random maze",
         handleClick: function () {
-          dispatch(setHasAnimated(false));
-
-          randomMaze();
+          generateMaze(this.id);
         },
       },
       {
         name: "Stair",
-        id: "stair",
+        id: "stair maze",
         handleClick: function () {
-          dispatch(setHasAnimated(false));
-
-          stairMaze();
+          generateMaze(this.id);
         },
       },
     ],

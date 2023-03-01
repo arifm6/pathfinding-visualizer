@@ -27,6 +27,11 @@ export function findShortestDistance() {
   } else if (pathfindingAlgorithm === "aStar") {
     output = aStar(node1, node2, node3);
   }
+  var sum = 0;
+  for (let i = 0; i < output.nodesInShortestPathOrder.length; i++) {
+    sum += output.nodesInShortestPathOrder[i].weight;
+  }
+  console.log(sum);
 
   //actual code here
   store.dispatch(updateCurrentAlgorithmOutput(output));

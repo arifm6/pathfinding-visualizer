@@ -6,7 +6,6 @@ var board = store.getState().board.boardArray;
 var currentObstacle = store.getState().header.currentObstacle;
 
 export function stairMaze() {
-  store.dispatch(clearBoard());
   board = store.getState().board.boardArray;
   currentObstacle = store.getState().header.currentObstacle;
   var animationSpeed = store.getState().header.currentAnimationSpeed;

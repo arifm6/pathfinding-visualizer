@@ -31,15 +31,13 @@ export default function Board() {
   const hasAnimated = useSelector(selectHasAnimated);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (animationInProgress) {
-      return;
+    if (!animationInProgress) {
+      findShortestDistance();
     }
-    findShortestDistance();
 
-    if (!hasAnimated) {
-      return;
+    if (hasAnimated) {
+      instantAnimateAlgorithm();
     }
-    instantAnimateAlgorithm();
   }, [boardArray]);
   //only used for handling obstacle
   const handleMouseDown = (e, node) => {
