@@ -1,6 +1,6 @@
 //entry point for maze generation
 import { clearBoard } from "../slices/boardSlice";
-import { setHasAnimated } from "../slices/headerSlice";
+import { setHasAnimated } from "../slices/animationSlice";
 import { store } from "../store";
 import { randomMaze } from "./randomMaze";
 import { recursiveDivision } from "./recursiveDivision";

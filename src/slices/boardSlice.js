@@ -70,7 +70,10 @@ const initialState = {
   carrotLocation: { row: -1, col: -1 },
   //a 2d array of nodes
   boardArray: generateBoard(initialWidth, initialHeight), //array of nodes
-  //hackey way to implement with use effect... learned a lesson to not update in findshortestdistance and do that carrot cheese... fix later
+  pathfindingResults: {
+    visitedNodesInOrder: { startToCarrot: [], carrotToFinish: [] },
+    nodesInShortestPathOrder: [],
+  },
 };
 
 export const boardSlice = createSlice({
@@ -173,6 +176,9 @@ export const boardSlice = createSlice({
     removeCarrotLocation: (state) => {
       state.carrotLocation = { row: -1, col: -1 };
     },
+    updatePathfindingResults: (state, action) => {
+      state.currentAlgorithmOutput = action.payload;
+    },
   },
 });
 
@@ -189,6 +195,7 @@ export const {
   toggleStart,
   toggleCarrot,
   removeCarrotLocation,
+  updatePathfindingResults,
 } = boardSlice.actions;
 export const selectBoardWidth = (state) => state.board.width;
 export const selectBoardHeight = (state) => state.board.height;

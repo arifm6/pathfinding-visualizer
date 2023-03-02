@@ -1,17 +1,19 @@
 import React from "react";
 import HeaderDropdown from "./HeaderDropdown";
 import {
-  selectCurrentAnimationSpeed,
   selectCurrentObstacle,
   selectCurrentPathfindingAlgorithm,
   selectMobileMenuOpen,
-  setAnimationSpeed,
-  setHasAnimated,
   setPathfindingAlgorithm,
   setWall,
   setWeight,
   toggleMobileMenuOpen,
 } from "../slices/headerSlice";
+import {
+  setAnimationSpeed,
+  setHasAnimated,
+  selectCurrentAnimationSpeed,
+} from "../slices/animationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
@@ -21,11 +23,6 @@ import {
   resetBoard,
   selectCarrotLocation,
 } from "../slices/boardSlice";
-import { recursiveDivision } from "../mazes/recursiveDivision";
-import { randomMaze } from "../mazes/randomMaze";
-import { stairMaze } from "../mazes/stairMaze";
-import { findShortestDistance } from "../algorithms/findShortestDistance";
-import { animateAlgorithm } from "../algorithms/animateAlgorithm";
 import { generateMaze } from "../mazes/generateMaze";
 export default function Header() {
   const dispatch = useDispatch(resetBoard());
@@ -51,16 +48,14 @@ export default function Header() {
         name: "Dijkstra's",
         id: "dijkstra",
         handleClick: function () {
-          dispatch(setPathfindingAlgorithm(this.id));
-          findShortestDistance();
+          return;
         },
       },
       {
         name: "A*",
         id: "aStar",
         handleClick: function () {
-          dispatch(setPathfindingAlgorithm(this.id));
-          findShortestDistance();
+          return;
         },
       },
     ],
@@ -186,8 +181,7 @@ export default function Header() {
         : "Pick An Algorithm"
     }`,
     handleClick: function () {
-      currentPathfindingAlgorithm && animateAlgorithm();
-      dispatch(setHasAnimated(true));
+      currentPathfindingAlgorithm && dispatch(setHasAnimated(true));
     },
   };
   const mobileMenuOpen = useSelector(selectMobileMenuOpen);

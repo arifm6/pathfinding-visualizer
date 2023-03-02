@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { instantAnimateAlgorithm } from "../algorithms/animateAlgorithm";
-import { findShortestDistance } from "../algorithms/findShortestDistance";
 import {
   selectBoardArray,
   toggleCarrot,
@@ -9,11 +7,8 @@ import {
   toggleObstacle,
   toggleStart,
 } from "../slices/boardSlice";
-import {
-  selectCurrentObstacle,
-  selectHasAnimated,
-  selectIsAnimating,
-} from "../slices/headerSlice";
+import { selectCurrentObstacle } from "../slices/headerSlice";
+import { selectHasAnimated, selectIsAnimating } from "../slices/animationSlice";
 import {
   selectIsPressed,
   selectWhatIsPressed,
@@ -31,13 +26,7 @@ export default function Board() {
   const hasAnimated = useSelector(selectHasAnimated);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!animationInProgress) {
-      findShortestDistance();
-    }
-
-    if (hasAnimated) {
-      instantAnimateAlgorithm();
-    }
+    return;
   }, [boardArray]);
   //only used for handling obstacle
   const handleMouseDown = (e, node) => {

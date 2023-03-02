@@ -1,12 +1,12 @@
-import { findShortestDistance } from "../algorithms/findShortestDistance";
 import { toggleObstacle } from "../slices/boardSlice";
-import { setIsAnimating } from "../slices/headerSlice";
+import { setIsAnimating } from "../slices/animationSlice";
 import { store } from "../store";
 
 var board = store.getState().board.boardArray;
 
 var currentObstacle = store.getState().header.currentObstacle;
-var animationSpeed = store.getState().header.currentAnimationSpeed;
+var animationSpeed = store.getState().animation.currentAnimationSpeed;
+
 var timerCounter = 0;
 const HORIZONTAL = "horizontal",
   VERTICAL = "vertical";
@@ -294,7 +294,7 @@ export function recursiveDivision(skew = "") {
   store.dispatch(setIsAnimating(true));
   board = store.getState().board.boardArray;
   currentObstacle = store.getState().header.currentObstacle;
-  animationSpeed = store.getState().header.currentAnimationSpeed;
+  animationSpeed = store.getState().animation.currentAnimationSpeed;
   var boardSize = {
     rows: store.getState().board.height,
     cols: store.getState().board.width,
@@ -355,6 +355,6 @@ export function recursiveDivision(skew = "") {
   }
   setTimeout(() => {
     store.dispatch(setIsAnimating(false));
-    findShortestDistance();
+    //findShortestDistance();
   }, timerCounter * animationSpeed);
 }
