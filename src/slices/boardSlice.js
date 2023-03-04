@@ -70,6 +70,7 @@ const initialState = {
   carrotLocation: { row: -1, col: -1 },
   //a 2d array of nodes
   boardArray: generateBoard(initialWidth, initialHeight), //array of nodes
+  //
   pathfindingResults: {
     visitedNodesInOrder: { startToCarrot: [], carrotToFinish: [] },
     nodesInShortestPathOrder: [],
@@ -177,7 +178,7 @@ export const boardSlice = createSlice({
       state.carrotLocation = { row: -1, col: -1 };
     },
     updatePathfindingResults: (state, action) => {
-      state.currentAlgorithmOutput = action.payload;
+      state.pathfindingResults = action.payload;
     },
   },
 });

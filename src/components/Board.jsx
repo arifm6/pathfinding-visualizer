@@ -7,7 +7,10 @@ import {
   toggleObstacle,
   toggleStart,
 } from "../slices/boardSlice";
-import { selectCurrentObstacle } from "../slices/headerSlice";
+import {
+  selectCurrentObstacle,
+  selectCurrentPathfindingAlgorithm,
+} from "../slices/headerSlice";
 import { selectHasAnimated, selectIsAnimating } from "../slices/animationSlice";
 import {
   selectIsPressed,
@@ -17,6 +20,9 @@ import {
   setWhatIsPressed,
 } from "../slices/mouseSlice";
 import Node from "./Node";
+import { instantAnimateAlgorithm } from "../pathfindingAlgorithms/animateAlgorithm";
+import { generatePathfindingResults } from "../pathfindingAlgorithms/generatePathfindingResults";
+import util from "../util";
 export default function Board() {
   const boardArray = useSelector(selectBoardArray);
   const mouseIsPressed = useSelector(selectIsPressed);
@@ -24,10 +30,16 @@ export default function Board() {
   const currentObstacle = useSelector(selectCurrentObstacle);
   const animationInProgress = useSelector(selectIsAnimating);
   const hasAnimated = useSelector(selectHasAnimated);
+  const currentPFAlgorithm = useSelector(selectCurrentPathfindingAlgorithm);
   const dispatch = useDispatch();
   useEffect(() => {
-    return;
-  }, [boardArray]);
+    if (!animationInProgress) {
+      currentPFAlgorithm && generatePathfindingResults();
+    }
+    if (hasAnimated) {
+      instantAnimateAlgorithm();
+    }
+  }, [boardArray, currentPFAlgorithm]);
   //only used for handling obstacle
   const handleMouseDown = (e, node) => {
     e.preventDefault();

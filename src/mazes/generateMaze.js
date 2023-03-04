@@ -5,6 +5,7 @@ import { store } from "../store";
 import { randomMaze } from "./randomMaze";
 import { recursiveDivision } from "./recursiveDivision";
 import { stairMaze } from "./stairMaze";
+import { generatePathfindingResults } from "../pathfindingAlgorithms/generatePathfindingResults";
 export function generateMaze(mazeId) {
   store.dispatch(clearBoard());
   store.dispatch(setHasAnimated(false));

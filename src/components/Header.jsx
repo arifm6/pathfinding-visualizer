@@ -19,11 +19,15 @@ import { FaBars } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import {
   addCarrot,
+  clearBoard,
   removeCarrot,
   resetBoard,
   selectCarrotLocation,
+  updatePathfindingResults,
 } from "../slices/boardSlice";
 import { generateMaze } from "../mazes/generateMaze";
+import { generatePathfindingResults } from "../pathfindingAlgorithms/generatePathfindingResults";
+import { animateAlgorithm } from "../pathfindingAlgorithms/animateAlgorithm";
 export default function Header() {
   const dispatch = useDispatch(resetBoard());
   const currentPathfindingAlgorithm = useSelector(
@@ -41,6 +45,10 @@ export default function Header() {
     return "";
   }
 
+  function updateAlgorithm(algorithm) {
+    dispatch(setHasAnimated(false));
+    dispatch(setPathfindingAlgorithm(algorithm));
+  }
   const algorithms = {
     name: "Algorithms",
     dropdownItems: [
@@ -48,14 +56,14 @@ export default function Header() {
         name: "Dijkstra's",
         id: "dijkstra",
         handleClick: function () {
-          return;
+          updateAlgorithm(this.id);
         },
       },
       {
         name: "A*",
         id: "aStar",
         handleClick: function () {
-          return;
+          updateAlgorithm(this.id);
         },
       },
     ],
@@ -66,14 +74,14 @@ export default function Header() {
       {
         name: "Recursive Division",
         id: "recursive division",
-        handleClick: function () {
+        handleClick() {
           generateMaze(this.id);
         },
       },
       {
         name: "Recursive Division Horizontal Skew",
         id: "recursive division horizontal skew",
-        handleClick: function () {
+        handleClick() {
           generateMaze(this.id);
         },
       },
@@ -81,21 +89,21 @@ export default function Header() {
       {
         name: "Recursive Division Vertical Skew",
         id: "recursive division vertical skew",
-        handleClick: function () {
+        handleClick() {
           generateMaze(this.id);
         },
       },
       {
         name: "Random Maze",
         id: "random maze",
-        handleClick: function () {
+        handleClick() {
           generateMaze(this.id);
         },
       },
       {
         name: "Stair",
         id: "stair maze",
-        handleClick: function () {
+        handleClick() {
           generateMaze(this.id);
         },
       },
@@ -182,6 +190,8 @@ export default function Header() {
     }`,
     handleClick: function () {
       currentPathfindingAlgorithm && dispatch(setHasAnimated(true));
+      generatePathfindingResults();
+      animateAlgorithm();
     },
   };
   const mobileMenuOpen = useSelector(selectMobileMenuOpen);
