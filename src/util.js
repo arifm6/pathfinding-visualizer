@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   getAllNodes: function (grid) {
     const allNodes = [];
     for (const row of grid) {
