@@ -38,6 +38,23 @@ export default {
     }
     return ret.reverse();
   },
+  //node is heading towards end, neighbor towards beginning
+  biTraceShortestPath: function (node, neighbor) {
+    //combine the paths
+    var curr = node;
+    var pathToEnd = [];
+    while (curr.previousNode) {
+      pathToEnd.push(curr);
+      curr = curr.previousNode;
+    }
+    pathToEnd.reverse();
+    curr = neighbor;
+    while (curr.previousNode) {
+      pathToEnd.push(curr);
+      curr = curr.previousNode;
+    }
+    return pathToEnd;
+  },
   //combine paths for start to carrot and carrot to finish
   combinePaths: function (startToCarrot, carrotToFinish) {
     return {

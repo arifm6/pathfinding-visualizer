@@ -4,8 +4,9 @@ import { store } from "../store";
 import aStar from "./aStar";
 import dijkstra from "./dijkstra";
 import greedyBestFirst from "./greedyBestFirst";
-import heuristic from "./heuristic";
 import breadthFirstSearch from "./breadthFirstSearch";
+import biAStar from "./biAStar";
+import biDijkstra from "./biDijkstra";
 var PF;
 const cloneDeep = require("clone-deep");
 function initBoard() {
@@ -29,14 +30,15 @@ function initBoard() {
   return { grid, startLocation, carrotLocation, finishLocation };
 }
 export function generatePathfindingResults() {
+  const bidirectional = store.getState().header.bidirectional;
   var { grid, startLocation, carrotLocation, finishLocation } = initBoard();
   const currentPathfindingAlgorithm =
     store.getState().header.currentPathfindingAlgorithm;
   if (currentPathfindingAlgorithm === "dijkstra") {
     //dijkstra can be used as Astar without a heuristic.
-    PF = new dijkstra();
+    PF = bidirectional ? new biDijkstra() : new dijkstra();
   } else if (currentPathfindingAlgorithm === "aStar") {
-    PF = new aStar();
+    PF = bidirectional ? new biAStar() : new aStar();
   } else if (currentPathfindingAlgorithm === "greedyBestFirst") {
     PF = new greedyBestFirst();
   } else if (currentPathfindingAlgorithm === "breadthFirstSearch") {

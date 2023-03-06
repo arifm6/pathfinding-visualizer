@@ -5,6 +5,7 @@ const initialState = {
   mobileMenuOpen: false,
   currentPathfindingAlgorithm: "",
   currentObstacle: "wall",
+  bidirectional: false,
 };
 
 export const headerSlice = createSlice({
@@ -26,6 +27,9 @@ export const headerSlice = createSlice({
     setWeight: (state) => {
       state.currentObstacle = "weight";
     },
+    toggleBidirectional: (state) => {
+      state.bidirectional = !state.bidirectional;
+    },
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   setPathfindingAlgorithm,
   setWall,
   setWeight,
+  toggleBidirectional,
 } = headerSlice.actions;
 
 export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
@@ -43,4 +48,5 @@ export const selectCurrentDropdown = (state) => state.header.currentDropdown;
 export const selectCurrentPathfindingAlgorithm = (state) =>
   state.header.currentPathfindingAlgorithm;
 export const selectCurrentObstacle = (state) => state.header.currentObstacle;
+export const selectBidirectional = (state) => state.header.bidirectional;
 export default headerSlice.reducer;

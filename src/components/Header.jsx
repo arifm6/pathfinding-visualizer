@@ -1,12 +1,14 @@
 import React from "react";
 import HeaderDropdown from "./HeaderDropdown";
 import {
+  selectBidirectional,
   selectCurrentObstacle,
   selectCurrentPathfindingAlgorithm,
   selectMobileMenuOpen,
   setPathfindingAlgorithm,
   setWall,
   setWeight,
+  toggleBidirectional,
   toggleMobileMenuOpen,
 } from "../slices/headerSlice";
 import {
@@ -160,7 +162,14 @@ export default function Header() {
       },
     ],
   };
-
+  const bidirectional = {
+    name: `Bidirectional: ${
+      useSelector(selectBidirectional) === true ? "Yes" : "No"
+    }`,
+    handleClick: function () {
+      dispatch(toggleBidirectional());
+    },
+  };
   const speed = {
     name: `Speed: ${
       currentAnimationSpeed === 25
@@ -270,6 +279,12 @@ export default function Header() {
               dropdownName={obstacles.name}
               dropdownItems={obstacles.dropdownItems}
             />
+          </li>
+          <li
+            className="header-item"
+            onClick={() => bidirectional.handleClick()}
+          >
+            <h1 className="header-item-name">{bidirectional.name}</h1>
           </li>
           <li className="header-item" onClick={() => reset.handleClick()}>
             <h1 className="header-item-name">{reset.name}</h1>
