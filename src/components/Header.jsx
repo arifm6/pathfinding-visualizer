@@ -15,6 +15,7 @@ import {
   setAnimationSpeed,
   setHasAnimated,
   selectCurrentAnimationSpeed,
+  selectIsAnimating,
 } from "../slices/animationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { FaBars } from "react-icons/fa";
@@ -38,6 +39,8 @@ export default function Header() {
   const boardHasCarrot = useSelector(selectCarrotLocation).row !== -1;
   const currentObstacle = useSelector(selectCurrentObstacle);
   const currentAnimationSpeed = useSelector(selectCurrentAnimationSpeed);
+  const animationInProgress = useSelector(selectIsAnimating);
+
   function pathfindingAlgorithmName(pathfindingAlgorithm) {
     if (pathfindingAlgorithm === "dijkstra") {
       return "Dijkstra's";
@@ -226,6 +229,9 @@ export default function Header() {
   const handleMobileMenuClick = () => {
     dispatch(toggleMobileMenuOpen());
   };
+  const allowClickStyle = animationInProgress
+    ? "hover:text-red-600"
+    : "hover:text-[#FDBF57]";
 
   return (
     <header className="w-screen max-w-[100vw] bg-[#7A003C]">
@@ -263,10 +269,16 @@ export default function Header() {
             <HeaderDropdown
               dropdownName={mazes.name}
               dropdownItems={mazes.dropdownItems}
+              animationInProgress={animationInProgress}
             />
           </li>
-          <li className="header-item" onClick={() => carrot.handleClick()}>
-            <h1 className="header-item-name">{carrot.name}</h1>
+          <li
+            className="header-item"
+            onClick={() => !animationInProgress && carrot.handleClick()}
+          >
+            <h1 className={`header-item-name ${allowClickStyle}`}>
+              {carrot.name}
+            </h1>
           </li>
           <li className="header-item">
             <h1 className="header-item-name " data-name={obstacles.name}>
@@ -286,8 +298,13 @@ export default function Header() {
           >
             <h1 className="header-item-name">{bidirectional.name}</h1>
           </li>
-          <li className="header-item" onClick={() => reset.handleClick()}>
-            <h1 className="header-item-name">{reset.name}</h1>
+          <li
+            className="header-item"
+            onClick={() => !animationInProgress && reset.handleClick()}
+          >
+            <h1 className={`header-item-name ${allowClickStyle}`}>
+              {reset.name}
+            </h1>
           </li>
 
           <li className="header-item">
@@ -302,8 +319,13 @@ export default function Header() {
               dropdownItems={speed.dropdownItems}
             />
           </li>
-          <li className="header-item" onClick={() => visualize.handleClick()}>
-            <h1 className="header-item-name">{visualize.name}</h1>
+          <li
+            className="header-item"
+            onClick={() => !animationInProgress && visualize.handleClick()}
+          >
+            <h1 className={`header-item-name ${allowClickStyle}`}>
+              {visualize.name}
+            </h1>
           </li>
         </ul>
       </div>
