@@ -8,6 +8,7 @@ import breadthFirstSearch from "./breadthFirstSearch";
 import biAStar from "./biAStar";
 import biDijkstra from "./biDijkstra";
 import biGreedyBestFirst from "./biGreedyBestFirst";
+import biBreadthFirstSearch from "./biBreadthFirstSearch";
 var PF;
 const cloneDeep = require("clone-deep");
 function initBoard() {
@@ -43,7 +44,7 @@ export function generatePathfindingResults() {
   } else if (currentPathfindingAlgorithm === "greedyBestFirst") {
     PF = bidirectional ? new biGreedyBestFirst() : new greedyBestFirst();
   } else if (currentPathfindingAlgorithm === "breadthFirstSearch") {
-    PF = new breadthFirstSearch();
+    PF = bidirectional ? new biBreadthFirstSearch() : new breadthFirstSearch();
   } else {
     return;
   }
