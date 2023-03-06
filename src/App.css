@@ -11,10 +11,10 @@
 }
 @layer components {
   .header-item {
-    @apply relative grow text-[#EFEFEF] py-3;
+    @apply relative grow text-[#EFEFEF] py-3  transition-opacity cursor-default active:opacity-80 hover:text-[#FDBF57] cursor-pointer;
   }
   .header-item-name {
-    @apply px-4 py-3 cursor-pointer lg:text-center hover:text-[#FDBF57] transition-colors duration-300;
+    @apply px-4 py-3  lg:text-center  transition-all duration-300;
   }
   .header-item-dropdown {
     @apply hidden bg-[#56002A] absolute top-[100%] left-0 right-0 z-30;

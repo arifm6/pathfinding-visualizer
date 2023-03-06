@@ -15,13 +15,13 @@ export default function HeaderDropdown({
     <ul
       className={`${
         currentDropdown === dropdownName && "block"
-      } header-item-dropdown `}
+      } header-item-dropdown cursor-pointer `}
     >
       {dropdownItems.map((dropdownItem, i) => {
         return (
           <li
             key={i}
-            className={`px-4 py-6 ${allowClickStyle} transition-colors duration-300`}
+            className={`px-4 py-6 ${allowClickStyle} transition-colors duration-300 text-[#EFEFEF] `}
             onClick={() => {
               dropdownItem.handleClick &&
                 !animationInProgress &&

@@ -220,6 +220,9 @@ export default function Header() {
         : "Pick An Algorithm"
     }`,
     handleClick: function () {
+      if (!currentPathfindingAlgorithm) {
+        return;
+      }
       currentPathfindingAlgorithm && dispatch(setHasAnimated(true));
       generatePathfindingResults();
       animateAlgorithm();
@@ -247,7 +250,7 @@ export default function Header() {
             mobileMenuOpen ? "absolute" : "hidden"
           } top-[100%] bg-[#7A003C] left-0 right-0 lg:static lg:flex grow items-center cursor-pointer z-30`}
         >
-          <li className="header-item ">
+          <li className="header-item " data-name={algorithms.name}>
             <h1 className="header-item-name" data-name={algorithms.name}>
               {algorithms.name}{" "}
               <span className="text-sm" data-name={algorithms.name}>
@@ -259,7 +262,7 @@ export default function Header() {
               dropdownItems={algorithms.dropdownItems}
             />
           </li>
-          <li className="header-item">
+          <li className="header-item" data-name={mazes.name}>
             <h1 className="header-item-name" data-name={mazes.name}>
               {mazes.name}{" "}
               <span className="text-sm" data-name={mazes.name}>
@@ -273,14 +276,12 @@ export default function Header() {
             />
           </li>
           <li
-            className="header-item"
+            className={`header-item ${allowClickStyle}`}
             onClick={() => !animationInProgress && carrot.handleClick()}
           >
-            <h1 className={`header-item-name ${allowClickStyle}`}>
-              {carrot.name}
-            </h1>
+            <h1 className={`header-item-name `}>{carrot.name}</h1>
           </li>
-          <li className="header-item">
+          <li className="header-item" data-name={obstacles.name}>
             <h1 className="header-item-name " data-name={obstacles.name}>
               {obstacles.name}{" "}
               <span className="text-sm" data-name={obstacles.name}>
@@ -296,18 +297,16 @@ export default function Header() {
             className="header-item"
             onClick={() => bidirectional.handleClick()}
           >
-            <h1 className="header-item-name">{bidirectional.name}</h1>
+            <h1 className="header-item-name">{bidirectional.name} </h1>
           </li>
           <li
-            className="header-item"
+            className={`header-item ${allowClickStyle}`}
             onClick={() => !animationInProgress && reset.handleClick()}
           >
-            <h1 className={`header-item-name ${allowClickStyle}`}>
-              {reset.name}
-            </h1>
+            <h1 className={`header-item-name `}>{reset.name}</h1>
           </li>
 
-          <li className="header-item">
+          <li className="header-item" data-name={speed.name}>
             <h1 className="header-item-name" data-name={speed.name}>
               {speed.name}{" "}
               <span className="text-sm" data-name={speed.name}>
@@ -320,12 +319,14 @@ export default function Header() {
             />
           </li>
           <li
-            className="header-item"
+            className={`header-item  bg-[#FDBF57] py-2 rounded opacity-90 text-[#7A003C] hover:opacity-100 active:opacity-80 cursor-pointer ${
+              animationInProgress
+                ? "hover:text-red-600"
+                : "hover:text-[#7A003C]"
+            }`}
             onClick={() => !animationInProgress && visualize.handleClick()}
           >
-            <h1 className={`header-item-name ${allowClickStyle}`}>
-              {visualize.name}
-            </h1>
+            <h1 className={`header-item-name  `}>{visualize.name}</h1>
           </li>
         </ul>
       </div>
