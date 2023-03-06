@@ -8,38 +8,27 @@ export default function aStar(options) {
 }
 
 aStar.prototype.findPath = function (startRow, startCol, endRow, endCol, grid) {
-  for (const row of grid) {
-    for (const col of row) {
-      col.g = Infinity;
-      col.f = Infinity;
-      col.previousNode = null;
-    }
-  }
-  var startNode = grid[startRow][startCol],
+  var openList = new Heap(function (nodeA, nodeB) {
+      return nodeA.f - nodeB.f;
+    }),
+    startNode = grid[startRow][startCol],
     endNode = grid[endRow][endCol],
     heuristic = this.heuristic;
   const aStarResults = {
     visitedNodesInOrder: [],
     nodesInShortestPathOrder: [],
   };
-  if (startRow === endRow && startCol === endCol) {
+  if (startNode === endNode) {
     return aStarResults;
   }
+
   startNode.g = 0;
   startNode.f = 0;
-  startNode.h = heuristic(
-    Math.abs(startRow - endRow),
-    Math.abs(startCol - endCol)
-  );
-  const unvisitedNodes = util.getAllNodes(grid);
-  while (unvisitedNodes.length) {
-    unvisitedNodes.sort((nodeA, nodeB) => nodeA.f - nodeB.f);
-    const currentNode = unvisitedNodes.shift();
-    //if current is a wall, skip remember to make it not a wall if start is a wall
-    if (currentNode.obstacle === "wall") {
-      continue;
-    }
-    currentNode.isVisited = true;
+  openList.push(startNode);
+  startNode.opened = true;
+  while (!openList.empty()) {
+    const currentNode = openList.pop();
+    currentNode.closed = true;
     aStarResults.visitedNodesInOrder.push(currentNode);
     if (currentNode === endNode) {
       //backtrack
@@ -50,12 +39,12 @@ aStar.prototype.findPath = function (startRow, startCol, endRow, endCol, grid) {
     const neighbors = util.getNeighbors(grid, currentNode);
     for (let i = 0; i < neighbors.length; i++) {
       const neighbor = neighbors[i];
-      if (neighbor.isVisited) {
+      if (neighbor.closed || neighbor.obstacle === "wall") {
         continue;
       }
       const ng = currentNode.g + neighbor.weight;
       //if havent checked neighber yet OR
-      if (neighbor.f === Infinity || ng < currentNode.g + neighbor.weight) {
+      if (!neighbor.opened || ng < neighbor.g) {
         neighbor.g = ng;
         neighbor.h =
           neighbor.h ||
@@ -65,7 +54,15 @@ aStar.prototype.findPath = function (startRow, startCol, endRow, endCol, grid) {
           );
         neighbor.f = neighbor.g + neighbor.h;
         neighbor.previousNode = currentNode;
+
+        if (!neighbor.opened) {
+          openList.push(neighbor);
+          neighbor.opened = true;
+        } else {
+          openList.updateItem(neighbor);
+        }
       }
     }
   }
+  return aStarResults;
 };

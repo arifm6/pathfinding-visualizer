@@ -9,9 +9,7 @@ const createNode = (row, col, startLocation, finishLocation) => {
     isFinish: row === finishLocation.row && col === finishLocation.col,
     isCarrot: false,
     weight: 1,
-    distance: Infinity,
     previousNode: null,
-    isVisited: false,
   };
 };
 
@@ -132,7 +130,9 @@ export const boardSlice = createSlice({
         node.classList.remove("node-shortest-path");
       });
 
-      removeObstacles(state.boardArray);
+      state.boardArray = generateBoard(state.width, state.height);
+      state.startLocation = getStartingLocation(state.width, state.height);
+      state.finishLocation = getFinishLocation(state.width, state.height);
     },
     //all it needs is the current node and current obstacle as {node, obstacle}
     toggleObstacle: (state, action) => {

@@ -2,7 +2,10 @@ import { updatePathfindingResults } from "../slices/boardSlice";
 import util from "../util";
 import { store } from "../store";
 import aStar from "./aStar";
+import dijkstra from "./dijkstra";
+import greedyBestFirst from "./greedyBestFirst";
 import heuristic from "./heuristic";
+var PF;
 const cloneDeep = require("clone-deep");
 function initBoard() {
   const boardState = store.getState().board;
@@ -25,15 +28,16 @@ function initBoard() {
   return { grid, startLocation, carrotLocation, finishLocation };
 }
 export function generatePathfindingResults() {
-  var PF;
   var { grid, startLocation, carrotLocation, finishLocation } = initBoard();
   const currentPathfindingAlgorithm =
     store.getState().header.currentPathfindingAlgorithm;
   if (currentPathfindingAlgorithm === "dijkstra") {
     //dijkstra can be used as Astar without a heuristic.
-    PF = new aStar({ heuristic: heuristic.none });
+    PF = new dijkstra();
   } else if (currentPathfindingAlgorithm === "aStar") {
     PF = new aStar();
+  } else if (currentPathfindingAlgorithm === "greedyBestFirst") {
+    PF = new greedyBestFirst();
   } else {
     return;
   }

@@ -1,5 +1,5 @@
 //entry point for maze generation
-import { clearBoard } from "../slices/boardSlice";
+import { clearBoard, resetBoard } from "../slices/boardSlice";
 import { setHasAnimated } from "../slices/animationSlice";
 import { store } from "../store";
 import { randomMaze } from "./randomMaze";
@@ -7,7 +7,7 @@ import { recursiveDivision } from "./recursiveDivision";
 import { stairMaze } from "./stairMaze";
 import { generatePathfindingResults } from "../pathfindingAlgorithms/generatePathfindingResults";
 export function generateMaze(mazeId) {
-  store.dispatch(clearBoard());
+  store.dispatch(resetBoard());
   store.dispatch(setHasAnimated(false));
   if (mazeId === "recursive division") {
     recursiveDivision();
@@ -18,7 +18,6 @@ export function generateMaze(mazeId) {
   } else if (mazeId === "random maze") {
     randomMaze();
   } else if (mazeId === "stair maze") {
-    console.log("stair");
     stairMaze();
   }
 }

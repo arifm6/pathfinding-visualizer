@@ -5,4 +5,7 @@ module.exports = {
   none: function () {
     return 0;
   },
+  greedyBestFirst: function (dx, dy) {
+    return 9999999 * (dx + dy);
+  },
 };

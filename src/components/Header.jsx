@@ -41,6 +41,8 @@ export default function Header() {
       return "Dijkstra's";
     } else if (pathfindingAlgorithm === "aStar") {
       return "A*";
+    } else if (pathfindingAlgorithm === "greedyBestFirst") {
+      return "Greedy Best-First";
     }
     return "";
   }
@@ -48,6 +50,7 @@ export default function Header() {
   function updateAlgorithm(algorithm) {
     dispatch(setHasAnimated(false));
     dispatch(setPathfindingAlgorithm(algorithm));
+    generatePathfindingResults();
   }
   const algorithms = {
     name: "Algorithms",
@@ -62,6 +65,13 @@ export default function Header() {
       {
         name: "A*",
         id: "aStar",
+        handleClick: function () {
+          updateAlgorithm(this.id);
+        },
+      },
+      {
+        name: "Greedy Best-First",
+        id: "greedyBestFirst",
         handleClick: function () {
           updateAlgorithm(this.id);
         },
