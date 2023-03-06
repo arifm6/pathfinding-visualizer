@@ -57,6 +57,7 @@ biAStar.prototype.findPath = function (
         continue;
       }
       if (neighbor.opened === BY_END) {
+        biAStarResults.visitedNodesInOrder.push(neighbor);
         const temp = util.biTraceShortestPath(currentNode, neighbor);
         biAStarResults.nodesInShortestPathOrder = [...temp];
         return biAStarResults;
@@ -91,6 +92,8 @@ biAStar.prototype.findPath = function (
         continue;
       }
       if (neighbor.opened === BY_START) {
+        biAStarResults.visitedNodesInOrder.push(neighbor);
+
         const temp = util.biTraceShortestPath(currentNode, neighbor).reverse();
         biAStarResults.nodesInShortestPathOrder = [...temp];
 
