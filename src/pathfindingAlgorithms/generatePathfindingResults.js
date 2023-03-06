@@ -5,6 +5,7 @@ import aStar from "./aStar";
 import dijkstra from "./dijkstra";
 import greedyBestFirst from "./greedyBestFirst";
 import heuristic from "./heuristic";
+import breadthFirstSearch from "./breadthFirstSearch";
 var PF;
 const cloneDeep = require("clone-deep");
 function initBoard() {
@@ -38,6 +39,8 @@ export function generatePathfindingResults() {
     PF = new aStar();
   } else if (currentPathfindingAlgorithm === "greedyBestFirst") {
     PF = new greedyBestFirst();
+  } else if (currentPathfindingAlgorithm === "breadthFirstSearch") {
+    PF = new breadthFirstSearch();
   } else {
     return;
   }

@@ -43,6 +43,8 @@ export default function Header() {
       return "A*";
     } else if (pathfindingAlgorithm === "greedyBestFirst") {
       return "Greedy Best-First";
+    } else if (pathfindingAlgorithm === "breadthFirstSearch") {
+      return "Breadth First";
     }
     return "";
   }
@@ -72,6 +74,13 @@ export default function Header() {
       {
         name: "Greedy Best-First",
         id: "greedyBestFirst",
+        handleClick: function () {
+          updateAlgorithm(this.id);
+        },
+      },
+      {
+        name: "Breadth First Search",
+        id: "breadthFirstSearch",
         handleClick: function () {
           updateAlgorithm(this.id);
         },

@@ -1,5 +1,5 @@
 import heuristic from "./heuristic";
-import util, { getNeighbors } from "../util";
+import util from "../util";
 var Heap = require("heap");
 
 export default function aStar(options) {
