@@ -19,7 +19,7 @@ export default function Legend() {
     { name: "Shortest Path Node", className: "node-shortest-path" },
   ];
   return (
-    <ul className="mt-4 max-w-full flex flex-wrap p-2 space-x-8 items-center justify-center space-y-2">
+    <ul className="mt-4 max-w-full flex flex-wrap p-2 space-x-8 items-center justify-center space-y-4">
       {legend.map((legendItem, i) => {
         return (
           <li className="legend-item" key={i}>

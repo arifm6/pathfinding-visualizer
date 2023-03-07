@@ -57,7 +57,9 @@ const removeObstacles = (board) => {
     }
   }
 };
-const initialWidth = Math.floor(window.innerWidth / 40);
+//i chose 32.5 because the cell heights are 2rem * 2rem and 32px = 2rem and 0.5 more for a bit of extra space
+const initialWidth = Math.floor(window.innerWidth / 32.5);
+//45 because it just feels nice
 const initialHeight = Math.floor(window.innerHeight / 45);
 
 const initialState = {
@@ -110,7 +112,7 @@ export const boardSlice = createSlice({
         node.classList.remove("node-shortest-path");
       });
 
-      const newWidth = Math.floor(window.innerWidth / 40);
+      const newWidth = Math.floor(window.innerWidth / 32.5);
       const newHeight = Math.floor(window.innerHeight / 45);
 
       state.width = newWidth;
