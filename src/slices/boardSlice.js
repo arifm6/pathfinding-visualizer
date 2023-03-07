@@ -129,10 +129,6 @@ export const boardSlice = createSlice({
 
         node.classList.remove("node-shortest-path");
       });
-
-      state.boardArray = generateBoard(state.width, state.height);
-      state.startLocation = getStartingLocation(state.width, state.height);
-      state.finishLocation = getFinishLocation(state.width, state.height);
     },
     //all it needs is the current node and current obstacle as {node, obstacle}
     toggleObstacle: (state, action) => {

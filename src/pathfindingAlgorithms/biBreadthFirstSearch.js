@@ -44,8 +44,7 @@ biBreadthFirstSearch.prototype.findPath = function (
         if (neighbor.by === BY_END) {
           biBFSResults.visitedNodesInOrder.push(neighbor);
           const temp = util.biTraceShortestPath(currentNode, neighbor);
-          console.log(temp);
-
+          temp.push(endNode);
           biBFSResults.nodesInShortestPathOrder = [...temp];
           return biBFSResults;
         }
@@ -71,6 +70,7 @@ biBreadthFirstSearch.prototype.findPath = function (
           const temp = util
             .biTraceShortestPath(currentNode, neighbor)
             .reverse();
+          temp.push(endNode);
 
           biBFSResults.nodesInShortestPathOrder = [...temp];
           return biBFSResults;

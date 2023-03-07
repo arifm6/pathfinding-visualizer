@@ -22,7 +22,7 @@ export default function Legend() {
     <ul className="mt-4 max-w-full flex flex-wrap p-2 space-x-8 items-center justify-center space-y-2">
       {legend.map((legendItem, i) => {
         return (
-          <li className="legend-item">
+          <li className="legend-item" key={i}>
             <div className={`w-8 h-8 animate-none ${legendItem.className}`} />
             <h3>{legendItem.name}</h3>
           </li>

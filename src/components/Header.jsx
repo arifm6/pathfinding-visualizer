@@ -55,6 +55,7 @@ export default function Header() {
   }
 
   function updateAlgorithm(algorithm) {
+    dispatch(clearBoard());
     dispatch(setHasAnimated(false));
     dispatch(setPathfindingAlgorithm(algorithm));
     generatePathfindingResults();
@@ -223,8 +224,9 @@ export default function Header() {
       if (!currentPathfindingAlgorithm) {
         return;
       }
-      currentPathfindingAlgorithm && dispatch(setHasAnimated(true));
       generatePathfindingResults();
+      currentPathfindingAlgorithm && dispatch(setHasAnimated(true));
+
       animateAlgorithm();
     },
   };
@@ -260,6 +262,7 @@ export default function Header() {
             <HeaderDropdown
               dropdownName={algorithms.name}
               dropdownItems={algorithms.dropdownItems}
+              animationInProgress={animationInProgress}
             />
           </li>
           <li className="header-item" data-name={mazes.name}>

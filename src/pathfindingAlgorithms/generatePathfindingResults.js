@@ -68,5 +68,8 @@ export function generatePathfindingResults() {
     secondGrid
   );
   var finalPath = util.combinePaths(pathToCarrot, pathToFinish);
+  finalPath.nodesInShortestPathOrder.unshift(
+    grid[startLocation.row][startLocation.col]
+  );
   store.dispatch(updatePathfindingResults(finalPath));
 }

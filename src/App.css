@@ -11,7 +11,10 @@
 }
 @layer components {
   .header-item {
-    @apply relative grow text-[#EFEFEF] py-3  transition-opacity  lg:active:opacity-80 hover:text-[#FDBF57];
+    @apply relative grow text-[#EFEFEF] py-3  transition-opacity   hover:text-[#FDBF57];
+  }
+  .header-item:active h1 {
+    @apply lg:active:opacity-80;
   }
   .header-item-name {
     @apply px-4 py-3  lg:text-center  transition-all duration-300;
