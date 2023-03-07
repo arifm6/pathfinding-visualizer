@@ -19,6 +19,15 @@
   .header-item-dropdown {
     @apply hidden bg-[#56002A] absolute top-[100%] left-0 right-0 z-30;
   }
+  .legend-item {
+    @apply flex space-x-2 items-center justify-center;
+  }
+  .legend-item img {
+    @apply h-8 w-8;
+  }
+  .legend-item h3 {
+    @apply text-xl text-[#5A5A5A];
+  }
   .node-container {
     @apply relative flex items-center justify-center w-8 h-8 border-[0.5px] border-[#5E6A71] overflow-visible;
   }
