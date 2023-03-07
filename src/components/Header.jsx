@@ -137,6 +137,9 @@ export default function Header() {
   const carrot = {
     name: `${!boardHasCarrot ? "Add Carrot" : "Remove Carrot"}`,
     handleClick: function () {
+      dispatch(clearBoard());
+      dispatch(setHasAnimated(false));
+
       if (boardHasCarrot) {
         dispatch(removeCarrot());
       } else {
