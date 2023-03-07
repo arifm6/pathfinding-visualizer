@@ -59,8 +59,8 @@ const removeObstacles = (board) => {
 };
 //i chose 32.5 because the cell heights are 2rem * 2rem and 32px = 2rem and 0.5 more for a bit of extra space
 const initialWidth = Math.floor(window.innerWidth / 32.5);
-//45 because it just feels nice
-const initialHeight = Math.floor(window.innerHeight / 45);
+//184 is the space of header + legend.. 35 just looks good.
+const initialHeight = Math.floor((window.innerHeight - 184) / 35);
 
 const initialState = {
   width: initialWidth,
@@ -113,7 +113,7 @@ export const boardSlice = createSlice({
       });
 
       const newWidth = Math.floor(window.innerWidth / 32.5);
-      const newHeight = Math.floor(window.innerHeight / 45);
+      const newHeight = Math.floor((window.innerHeight - 184) / 35);
 
       state.width = newWidth;
       state.height = newHeight;
