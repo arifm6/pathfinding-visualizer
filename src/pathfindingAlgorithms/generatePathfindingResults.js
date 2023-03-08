@@ -33,7 +33,7 @@ function initBoard() {
 }
 export function generatePathfindingResults() {
   const bidirectional = store.getState().header.bidirectional;
-  var { grid, startLocation, carrotLocation, finishLocation } = initBoard();
+  var { grid, startLocation, carrotLocation } = initBoard();
   const currentPathfindingAlgorithm =
     store.getState().header.currentPathfindingAlgorithm;
   if (currentPathfindingAlgorithm === "dijkstra") {

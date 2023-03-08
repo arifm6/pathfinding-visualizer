@@ -50,7 +50,7 @@ biAStar.prototype.findPath = function (
     currentNode = startOpenList.pop();
     currentNode.closed = true;
     biAStarResults.visitedNodesInOrder.push(currentNode);
-    var neighbors = util.getNeighbors(grid, currentNode);
+    neighbors = util.getNeighbors(grid, currentNode);
     for (let i = 0; i < neighbors.length; i++) {
       neighbor = neighbors[i];
       if (neighbor.closed || neighbor.obstacle === "wall") {
@@ -89,7 +89,7 @@ biAStar.prototype.findPath = function (
 
     neighbors = util.getNeighbors(grid, currentNode);
     for (let i = 0; i < neighbors.length; i++) {
-      var neighbor = neighbors[i];
+      neighbor = neighbors[i];
       if (neighbor.closed || neighbor.obstacle === "wall") {
         continue;
       }
@@ -105,7 +105,7 @@ biAStar.prototype.findPath = function (
       }
       row = neighbor.row;
       col = neighbor.col;
-      var ng = currentNode.g + neighbor.weight;
+      ng = currentNode.g + neighbor.weight;
       if (!neighbor.opened || ng < neighbor.g) {
         neighbor.g = ng;
         neighbor.h =

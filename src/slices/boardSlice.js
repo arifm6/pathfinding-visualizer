@@ -50,13 +50,6 @@ const generateBoard = (width, height) => {
   }
   return boardArray;
 };
-const removeObstacles = (board) => {
-  for (let row = 0; row < board.length; row++) {
-    for (let col = 0; col < board[0].length; col++) {
-      board[row][col].obstacle = "";
-    }
-  }
-};
 //i chose 32.5 because the cell heights are 2rem * 2rem and 32px = 2rem and 0.5 more for a bit of extra space
 const initialWidth = Math.floor(window.innerWidth / 32.5);
 //184 is the space of header + legend.. 35 just looks good.

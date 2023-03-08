@@ -22,7 +22,6 @@ import {
 import Node from "./Node";
 import { instantAnimateAlgorithm } from "../pathfindingAlgorithms/animateAlgorithm";
 import { generatePathfindingResults } from "../pathfindingAlgorithms/generatePathfindingResults";
-import util from "../util";
 export default function Board() {
   const boardArray = useSelector(selectBoardArray);
   const mouseIsPressed = useSelector(selectIsPressed);

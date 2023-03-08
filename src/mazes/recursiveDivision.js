@@ -355,6 +355,5 @@ export function recursiveDivision(skew = "") {
   }
   setTimeout(() => {
     store.dispatch(setIsAnimating(false));
-    //findShortestDistance();
   }, timerCounter * animationSpeed);
 }

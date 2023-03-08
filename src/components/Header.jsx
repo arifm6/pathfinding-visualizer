@@ -26,7 +26,6 @@ import {
   removeCarrot,
   resetBoard,
   selectCarrotLocation,
-  updatePathfindingResults,
 } from "../slices/boardSlice";
 import { generateMaze } from "../mazes/generateMaze";
 import { generatePathfindingResults } from "../pathfindingAlgorithms/generatePathfindingResults";

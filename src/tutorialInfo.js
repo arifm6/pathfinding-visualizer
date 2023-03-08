@@ -1,4 +1,4 @@
-export default [
+const tutorialInfo = [
   {
     header: "Welcome to my Pathfinding Visualizer",
     subheader:
@@ -78,3 +78,4 @@ export default [
     imageAlt: "other features navigation bar",
   },
 ];
+export default tutorialInfo;

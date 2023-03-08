@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectIsAnimating } from "../slices/animationSlice";
 import { selectCurrentDropdown } from "../slices/headerSlice";
 export default function HeaderDropdown({
   dropdownItems,
