@@ -10,6 +10,9 @@
   box-sizing: border-box;
 }
 @layer components {
+  .tutorial-button {
+    @apply py-1 px-1 sm:px-4 rounded-md bg-[#FDBF57] opacity-90 hover:opacity-80 active:opacity-100;
+  }
   .header-item {
     @apply relative grow text-[#EFEFEF] py-3  transition-opacity   hover:text-[#FDBF57];
   }

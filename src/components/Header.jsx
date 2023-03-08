@@ -268,6 +268,13 @@ export default function Header() {
               animationInProgress={animationInProgress}
             />
           </li>
+          <li
+            className="header-item"
+            onClick={() => bidirectional.handleClick()}
+          >
+            <h1 className="header-item-name">{bidirectional.name} </h1>
+          </li>
+
           <li className="header-item" data-name={mazes.name}>
             <h1 className="header-item-name" data-name={mazes.name}>
               {mazes.name}{" "}
@@ -299,19 +306,6 @@ export default function Header() {
               dropdownItems={obstacles.dropdownItems}
             />
           </li>
-          <li
-            className="header-item"
-            onClick={() => bidirectional.handleClick()}
-          >
-            <h1 className="header-item-name">{bidirectional.name} </h1>
-          </li>
-          <li
-            className={`header-item ${allowClickStyle}`}
-            onClick={() => !animationInProgress && reset.handleClick()}
-          >
-            <h1 className={`header-item-name `}>{reset.name}</h1>
-          </li>
-
           <li className="header-item" data-name={speed.name}>
             <h1 className="header-item-name" data-name={speed.name}>
               {speed.name}{" "}
@@ -324,6 +318,14 @@ export default function Header() {
               dropdownItems={speed.dropdownItems}
             />
           </li>
+
+          <li
+            className={`header-item ${allowClickStyle}`}
+            onClick={() => !animationInProgress && reset.handleClick()}
+          >
+            <h1 className={`header-item-name `}>{reset.name}</h1>
+          </li>
+
           <li
             className={`header-item  bg-[#FDBF57] py-1  rounded opacity-90 text-[#7A003C] hover:opacity-100 active:opacity-80 cursor-pointer ${
               animationInProgress
