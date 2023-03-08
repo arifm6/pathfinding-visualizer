@@ -7,6 +7,7 @@ import {
   updateCurrentDropdown,
 } from "./slices/headerSlice";
 import Legend from "./components/Legend";
+import Tutorial from "./components/Tutorial";
 function App() {
   const dispatch = useDispatch();
   const currentDropdown = useSelector(selectCurrentDropdown);
@@ -20,6 +21,7 @@ function App() {
     <div className=" App min-h-screen w-screen" onClick={(e) => handleClick(e)}>
       <Header />
       <Legend />
+      <Tutorial />
       <Board />
     </div>
   );

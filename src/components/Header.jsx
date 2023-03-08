@@ -325,7 +325,7 @@ export default function Header() {
             />
           </li>
           <li
-            className={`header-item  bg-[#FDBF57] py-2 rounded opacity-90 text-[#7A003C] hover:opacity-100 active:opacity-80 cursor-pointer ${
+            className={`header-item  bg-[#FDBF57] py-1  rounded opacity-90 text-[#7A003C] hover:opacity-100 active:opacity-80 cursor-pointer ${
               animationInProgress
                 ? "hover:text-red-600"
                 : "hover:text-[#7A003C]"
