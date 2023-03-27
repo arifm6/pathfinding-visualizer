@@ -19,8 +19,8 @@ function App() {
 
   return (
     <div className=" App min-h-screen w-screen" onClick={(e) => handleClick(e)}>
-      <Header />
       <Tutorial />
+      <Header />
       <Legend />
       <Board />
     </div>
