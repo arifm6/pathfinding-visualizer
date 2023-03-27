@@ -49,7 +49,7 @@ const tutorialInfo = [
     subheader: 'Click "Add Carrot" ',
     description:
       "You can add a carrot to the board to have an additional end destination. The algorithm will first try to find the closest path to the carrot node (from the start), and will then look for the closest path to the finish node (from the carrot)",
-    image: "./carrot.png",
+    image: "./carrot.webp",
     imageAlt: "carrot",
   },
   {
