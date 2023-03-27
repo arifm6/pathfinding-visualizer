@@ -13,7 +13,7 @@ function App() {
   const currentDropdown = useSelector(selectCurrentDropdown);
   const handleClick = (e) => {
     e.target.dataset.name === currentDropdown
-      ? dispatch(updateCurrentDropdown("none"))
+      ? dispatch(updateCurrentDropdown(""))
       : dispatch(updateCurrentDropdown(e.target.dataset.name));
   };
 

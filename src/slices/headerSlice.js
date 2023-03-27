@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentDropdown: "none",
-  mobileMenuOpen: false,
+  currentDropdown: "",
   currentPathfindingAlgorithm: "",
   currentObstacle: "wall",
   bidirectional: false,
@@ -14,9 +13,6 @@ export const headerSlice = createSlice({
   reducers: {
     updateCurrentDropdown: (state, action) => {
       state.currentDropdown = action.payload;
-    },
-    toggleMobileMenuOpen: (state) => {
-      state.mobileMenuOpen = !state.mobileMenuOpen;
     },
     setPathfindingAlgorithm: (state, action) => {
       state.currentPathfindingAlgorithm = action.payload;
@@ -36,14 +32,12 @@ export const headerSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   updateCurrentDropdown,
-  toggleMobileMenuOpen,
   setPathfindingAlgorithm,
   setWall,
   setWeight,
   toggleBidirectional,
 } = headerSlice.actions;
 
-export const selectMobileMenuOpen = (state) => state.header.mobileMenuOpen;
 export const selectCurrentDropdown = (state) => state.header.currentDropdown;
 export const selectCurrentPathfindingAlgorithm = (state) =>
   state.header.currentPathfindingAlgorithm;

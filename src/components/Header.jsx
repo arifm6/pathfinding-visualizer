@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderDropdown from "./HeaderDropdown";
 import {
   selectBidirectional,
@@ -232,9 +232,9 @@ export default function Header() {
       animateAlgorithm();
     },
   };
-  const mobileMenuOpen = useSelector(selectMobileMenuOpen);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const handleMobileMenuClick = () => {
-    dispatch(toggleMobileMenuOpen());
+    setMobileMenuOpen((prevMobileMenuOpen) => !prevMobileMenuOpen);
   };
   const allowClickStyle = animationInProgress
     ? "hover:text-red-600"
