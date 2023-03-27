@@ -1,4 +1,4 @@
-import util from "../util";
+import util from "../utils";
 export default function biBreadthFirstSearch() {}
 
 biBreadthFirstSearch.prototype.findPath = function (

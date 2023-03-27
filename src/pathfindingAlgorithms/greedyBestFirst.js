@@ -1,4 +1,4 @@
-import util from "../util";
+import util from "../utils";
 import heuristic from "./heuristic";
 import aStar from "./aStar";
 var Heap = require("heap");

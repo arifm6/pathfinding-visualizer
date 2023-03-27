@@ -1,5 +1,5 @@
 import { updatePathfindingResults } from "../slices/boardSlice";
-import util from "../util";
+import util from "../utils";
 import { store } from "../store";
 import aStar from "./aStar";
 import dijkstra from "./dijkstra";

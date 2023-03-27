@@ -1,5 +1,5 @@
 import heuristic from "./heuristic";
-import util from "../util";
+import util from "../utils";
 var Heap = require("heap");
 
 export default function aStar(options) {
