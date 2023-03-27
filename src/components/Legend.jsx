@@ -24,7 +24,7 @@ export default function Legend() {
         return (
           <li className="legend-item" key={i}>
             <div className={`w-8 h-8 animate-none ${legendItem.className}`} />
-            <h3>{legendItem.name}</h3>
+            <h1 className="text-lg">{legendItem.name}</h1>
           </li>
         );
       })}

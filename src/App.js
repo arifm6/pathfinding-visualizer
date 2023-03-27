@@ -20,8 +20,8 @@ function App() {
   return (
     <div className=" App min-h-screen w-screen" onClick={(e) => handleClick(e)}>
       <Header />
-      <Legend />
       <Tutorial />
+      <Legend />
       <Board />
     </div>
   );

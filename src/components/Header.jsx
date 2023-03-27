@@ -242,9 +242,16 @@ export default function Header() {
     <header className="w-screen max-w-[100vw] bg-[#7A003C]">
       <div className="flex justify-between px-4 relative items-center">
         <h1 className="text-3xl text-[#EFEFEF] py-3 hover:text-[#FDBF57] transition-colors duration-300 cursor-pointer">
-          Pathfinding Visualizer
+          <a href="https://pathfinding-visualizer-arifm6.vercel.app/">
+            Pathfinding Visualizer
+          </a>
         </h1>
-        <button className="lg:hidden" onClick={() => handleMobileMenuClick()}>
+        <button
+          className="lg:hidden"
+          aria-label="Main menu"
+          aria-expanded={mobileMenuOpen ? "true" : "false"}
+          onClick={() => handleMobileMenuClick()}
+        >
           {mobileMenuOpen ? <AiOutlineClose /> : <FaBars />}
         </button>
         <ul
@@ -253,12 +260,12 @@ export default function Header() {
           } top-[100%] bg-[#7A003C] left-0 right-0 lg:static lg:flex grow items-center cursor-pointer z-30`}
         >
           <li className="header-item " data-name={algorithms.name}>
-            <h1 className="header-item-name" data-name={algorithms.name}>
+            <h2 className="header-item-name" data-name={algorithms.name}>
               {algorithms.name}{" "}
               <span className="text-sm" data-name={algorithms.name}>
                 &#9660;
               </span>
-            </h1>
+            </h2>
             <HeaderDropdown
               dropdownName={algorithms.name}
               dropdownItems={algorithms.dropdownItems}
@@ -269,16 +276,16 @@ export default function Header() {
             className="header-item"
             onClick={() => bidirectional.handleClick()}
           >
-            <h1 className="header-item-name">{bidirectional.name} </h1>
+            <h2 className="header-item-name">{bidirectional.name} </h2>
           </li>
 
           <li className="header-item" data-name={mazes.name}>
-            <h1 className="header-item-name" data-name={mazes.name}>
+            <h2 className="header-item-name" data-name={mazes.name}>
               {mazes.name}{" "}
               <span className="text-sm" data-name={mazes.name}>
                 &#9660;
               </span>
-            </h1>
+            </h2>
             <HeaderDropdown
               dropdownName={mazes.name}
               dropdownItems={mazes.dropdownItems}
@@ -289,27 +296,27 @@ export default function Header() {
             className={`header-item ${allowClickStyle}`}
             onClick={() => !animationInProgress && carrot.handleClick()}
           >
-            <h1 className={`header-item-name `}>{carrot.name}</h1>
+            <h2 className={`header-item-name `}>{carrot.name}</h2>
           </li>
           <li className="header-item" data-name={obstacles.name}>
-            <h1 className="header-item-name " data-name={obstacles.name}>
+            <h2 className="header-item-name " data-name={obstacles.name}>
               {obstacles.name}{" "}
               <span className="text-sm" data-name={obstacles.name}>
                 &#9660;
               </span>
-            </h1>
+            </h2>
             <HeaderDropdown
               dropdownName={obstacles.name}
               dropdownItems={obstacles.dropdownItems}
             />
           </li>
           <li className="header-item" data-name={speed.name}>
-            <h1 className="header-item-name" data-name={speed.name}>
+            <h2 className="header-item-name" data-name={speed.name}>
               {speed.name}{" "}
               <span className="text-sm" data-name={speed.name}>
                 &#9660;
               </span>
-            </h1>
+            </h2>
             <HeaderDropdown
               dropdownName={speed.name}
               dropdownItems={speed.dropdownItems}
@@ -320,7 +327,7 @@ export default function Header() {
             className={`header-item ${allowClickStyle}`}
             onClick={() => !animationInProgress && reset.handleClick()}
           >
-            <h1 className={`header-item-name `}>{reset.name}</h1>
+            <h2 className={`header-item-name `}>{reset.name}</h2>
           </li>
 
           <li
@@ -331,7 +338,7 @@ export default function Header() {
             }`}
             onClick={() => !animationInProgress && visualize.handleClick()}
           >
-            <h1 className={`header-item-name  `}>{visualize.name}</h1>
+            <h2 className={`header-item-name  `}>{visualize.name}</h2>
           </li>
         </ul>
       </div>
