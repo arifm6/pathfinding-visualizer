@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/******** UTILS FOR BOARD */
 const createNode = (row, col, startLocation, finishLocation) => {
   return {
     row,
@@ -50,6 +51,9 @@ const generateBoard = (width, height) => {
   }
   return boardArray;
 };
+
+/***END OF UTIL */
+
 //i chose 32.5 because the cell heights are 2rem * 2rem and 32px = 2rem and 0.5 more for a bit of extra space
 const initialWidth = Math.floor(window.innerWidth / 32.5);
 //184 is the space of header + legend.. 35 just looks good.
@@ -75,32 +79,30 @@ export const boardSlice = createSlice({
   initialState,
   reducers: {
     updateBoardWidth: (state, action) => {
-      state.width = action.payload;
+      return { ...state, width: action.payload };
     },
     updateBoardHeight: (state, action) => {
-      state.height = action.payload;
+      return { ...state, height: action.payload };
     },
     //need to modify alias because redux uses a proxy before that
-    addCarrot: (state) => {
-      const boardAlias = state.boardArray;
-      state.carrotLocation = getCarrotLocation(state.width, state.height);
-      boardAlias[state.carrotLocation.row][
-        state.carrotLocation.col
-      ].isCarrot = true;
+    addCarrot: (state, action) => {
+      const carrotLocation = getCarrotLocation(state.width, state.height);
+      state.carrotLocation = carrotLocation;
+      state.boardArray[carrotLocation.row][carrotLocation.col].isCarrot = true;
     },
     removeCarrot: (state) => {
-      const boardAlias = state.boardArray;
-      boardAlias[state.carrotLocation.row][
+      state.boardArray[state.carrotLocation.row][
         state.carrotLocation.col
       ].isCarrot = false;
+
       state.carrotLocation = { row: -1, col: -1 };
     },
     // fix reset
     resetBoard: (state) => {
       document.querySelectorAll(".node").forEach((node) => {
-        node.classList.remove("carrot-to-finish");
         node.classList.remove("start-to-carrot");
         node.classList.remove("start-to-carrot-instant");
+        node.classList.remove("carrot-to-finish");
         node.classList.remove("carrot-to-finish-instant");
         node.classList.remove("node-shortest-path");
       });
@@ -117,11 +119,10 @@ export const boardSlice = createSlice({
     },
     clearBoard: (state) => {
       document.querySelectorAll(".node").forEach((node) => {
-        node.classList.remove("carrot-to-finish");
         node.classList.remove("start-to-carrot");
-        node.classList.remove("carrot-to-finish-instant");
         node.classList.remove("start-to-carrot-instant");
-
+        node.classList.remove("carrot-to-finish");
+        node.classList.remove("carrot-to-finish-instant");
         node.classList.remove("node-shortest-path");
       });
     },
