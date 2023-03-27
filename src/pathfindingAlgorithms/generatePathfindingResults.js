@@ -9,7 +9,6 @@ import biAStar from "./biAStar";
 import biDijkstra from "./biDijkstra";
 import biGreedyBestFirst from "./biGreedyBestFirst";
 import biBreadthFirstSearch from "./biBreadthFirstSearch";
-var PF;
 const cloneDeep = require("clone-deep");
 function initBoard() {
   const boardState = store.getState().board;
@@ -32,6 +31,8 @@ function initBoard() {
   return { grid, startLocation, carrotLocation, finishLocation };
 }
 export function generatePathfindingResults() {
+  var PF;
+
   const bidirectional = store.getState().header.bidirectional;
   var { grid, startLocation, carrotLocation } = initBoard();
   const currentPathfindingAlgorithm =

@@ -14,7 +14,7 @@ const tutorialInfo = [
       "A pathfinding program is an application that takes two points on a plane and finds the shortest path between those two points",
     description:
       "In the real world, you may be unaware that you are using some sort of pathfinding algorithms when you use applications such as google maps or a GPS. This application however, finds the shortest path on a 2D grid.",
-    image: "./pathfinding-map.png",
+    image: "./pathfinding-map.webp",
     imageAlt: "pathfinding map",
   },
   {
@@ -23,7 +23,7 @@ const tutorialInfo = [
       'You can choose a pathfinding algorithm from the "Algorithms" drop-down',
     description:
       "Pathfinding algorithms calculate the shortest distance between two nodes in a variety of ways. Some algorithms may be unweighted which means they do not consider the cost to travel between weighted nodes. Not all algorithms guarantee the shortest path and bidirectional algorithms are not weighted.",
-    image: "./algorithms-dropdown.png",
+    image: "./algorithms-dropdown.jpg",
     imageAlt: "algorithms-dropdown",
   },
   {
@@ -32,7 +32,7 @@ const tutorialInfo = [
       "You can select whether you would like to search bidirectionally or not.",
     description:
       "Bidirectional search uses both the start and end point to try and find a path that meet in the middle. Although they can be just as effective as their unidirectional counterpart, they may have trouble finding the shortest path when weights are involved.",
-    image: "./bidirectional.png",
+    image: "./bidirectional.webp",
     imageAlt: "bidirectional",
   },
   {
@@ -41,7 +41,7 @@ const tutorialInfo = [
       "You can choose from a maze generation algorithm to quickly develop a prebuilt board",
     description:
       "There are a variety of maze generation algorithms that you can use to build a board and test our algorithms.",
-    image: "./maze.png",
+    image: "./maze.webp",
     imageAlt: "maze",
   },
   {

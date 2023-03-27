@@ -4,12 +4,10 @@ import {
   selectBidirectional,
   selectCurrentObstacle,
   selectCurrentPathfindingAlgorithm,
-  selectMobileMenuOpen,
   setPathfindingAlgorithm,
   setWall,
   setWeight,
   toggleBidirectional,
-  toggleMobileMenuOpen,
 } from "../slices/headerSlice";
 import {
   setAnimationSpeed,

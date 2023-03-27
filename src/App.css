@@ -57,19 +57,19 @@
     @apply absolute w-8 h-8;
   }
   .start-node {
-    background-image: url("../public/start.png") !important;
+    background-image: url("../public/start.webp") !important;
     background-size: 100% 100%;
     animation-name: node-circle-expand;
     animation-duration: 0.5s;
   }
   .finish-node {
-    background-image: url("../public/finish.png") !important;
+    background-image: url("../public/finish.webp") !important;
     background-size: 100% 100%;
     animation-name: node-circle-expand;
     animation-duration: 0.5s;
   }
   .carrot-node {
-    background-image: url("../public/carrot.png") !important;
+    background-image: url("../public/carrot.webp") !important;
     background-size: 100% 100%;
     animation-name: node-circle-expand;
     animation-duration: 0.5s;
@@ -80,7 +80,7 @@
     animation-duration: 0.5s;
   }
   .weight-node {
-    background-image: url("../public/weight.png");
+    background-image: url("../public/weight.webp");
     background-size: 100% 100%;
     animation-name: node-circle-expand;
     animation-duration: 0.5s;
